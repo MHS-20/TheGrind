@@ -5,14 +5,20 @@
  */
 var numDistinct = function (s, t) {
   const n = s.length, m = t.length;
-  const dp = Array.from({ length: n + 1 }, () => new Array(m + 1).fill(0));
-  for (let i = 0; i <= n; i++) dp[i][0] = 1; // empty t: one way
+  const memo = Array.from({ length: n + 1 }, () => new Array(m + 1).fill(0));
 
-  for (let i = 1; i <= n; i++) {
-    for (let j = 1; j <= m; j++) {
-      dp[i][j] = dp[i - 1][j]; // skip cur s[i-1]
-      if (s[i - 1] === t[j - 1]) dp[i][j] += dp[i - 1][j - 1]; // pick it
+  for (let idx = 0; idx <= n; idx++) {
+    memo[idx][m] = 1;
+  }
+
+  for (let j = m - 1; j >= 0; j--) {
+    for (let i = n - 1; i >= 0; i--) {
+      let ways = 0;
+      if (s[i] === t[j]) ways += memo[i + 1][j + 1];
+      ways += memo[i + 1][j];
+      memo[i][j] = ways;
     }
   }
-  return dp[n][m];
+
+  return memo[0][0];
 };

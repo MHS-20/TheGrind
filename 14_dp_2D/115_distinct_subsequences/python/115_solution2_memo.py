@@ -5,21 +5,20 @@ class Solution:
     def numDistinct(self, s: str, t: str) -> int:
         n, m = len(s), len(t)
         sys.setrecursionlimit(max(1000, n + 100))  # depth can reach len(s)
-        dp = [[-1] * (m + 1) for _ in range(n + 1)]
+        memo = [[-1] * m for _ in range(n)]
 
-        def f(i: int, j: int) -> int:
-            if j == 0:
-                return 1  # t fully matched
-            if i == 0:
-                return 0  # s ran out first
-            if dp[i][j] != -1:
-                return dp[i][j]
+        def dpf(i: int, j: int) -> int:
+            if j == m:
+                return 1
+            if i == n:
+                return 0
+            if memo[i][j] != -1:
+                return memo[i][j]
 
-            ways = f(i - 1, j)  # skip s[i-1]
-            if s[i - 1] == t[j - 1]:
-                ways += f(i - 1, j - 1)  # pick it
+            memo[i][j] = 0
+            if s[i] == t[j]:
+                memo[i][j] += dpf(i + 1, j + 1)
+            memo[i][j] += dpf(i + 1, j)
+            return memo[i][j]
 
-            dp[i][j] = ways
-            return ways
-
-        return f(n, m)
+        return dpf(0, 0)

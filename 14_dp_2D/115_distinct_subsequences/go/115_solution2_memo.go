@@ -2,34 +2,36 @@ package dp
 
 func numDistinct(s string, t string) int {
 	n, m := len(s), len(t)
-	dp := make([][]int, n+1) // -1 = not computed
-	for i := range dp {
-		dp[i] = make([]int, m+1)
-		for j := range dp[i] {
-			dp[i][j] = -1
+	memo := make([][]int, n) // -1 = not computed
+	for i := range memo {
+		memo[i] = make([]int, m)
+		for j := range memo[i] {
+			memo[i][j] = -1
 		}
 	}
 
-	var f func(i, j int) int
-	f = func(i, j int) int {
-		if j == 0 {
-			return 1 // t fully matched
+	var dpf func(i, j int) int
+	dpf = func(i, j int) int {
+		if j == m {
+			return 1
 		}
-		if i == 0 {
-			return 0 // s ran out first
+		if i == n {
+			return 0
 		}
-		if dp[i][j] != -1 {
-			return dp[i][j]
-		}
-
-		ways := f(i-1, j) // skip s[i-1]
-		if s[i-1] == t[j-1] {
-			ways += f(i-1, j-1) // pick it
+		if memo[i][j] != -1 {
+			return memo[i][j]
 		}
 
-		dp[i][j] = ways & 0xFFFFFFFF // keep within u32 range so nothing overflows
-		return dp[i][j]
+		ways := 0
+		if s[i] == t[j] {
+			ways += dpf(i+1, j+1)
+		}
+		ways += dpf(i+1, j)
+
+		// keep within u32 range so nothing overflows and -1 stays a free sentinel
+		memo[i][j] = ways & 0xFFFFFFFF
+		return memo[i][j]
 	}
 
-	return int(int32(f(n, m)))
+	return int(int32(dpf(0, 0)))
 }

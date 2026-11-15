@@ -4,19 +4,24 @@
 int numDistinct(char *s, char *t) {
   int n = strlen(s), m = strlen(t);
   int w = m + 1;
-  // dp[i * w + j]; unsigned so intermediate overflow wraps instead of being UB
-  unsigned long long *dp = calloc((n + 1) * w, sizeof(unsigned long long));
-  for (int i = 0; i <= n; i++)
-    dp[i * w] = 1; // empty t: one way
+  // memo[i * w + j]; unsigned so intermediate overflow wraps instead of being UB
+  unsigned long long *memo = calloc((n + 1) * w, sizeof(unsigned long long));
 
-  for (int i = 1; i <= n; i++) {
-    for (int j = 1; j <= m; j++) {
-      dp[i * w + j] = dp[(i - 1) * w + j]; // skip cur s[i-1]
-      if (s[i - 1] == t[j - 1])
-        dp[i * w + j] += dp[(i - 1) * w + (j - 1)]; // pick it
+  for (int idx = 0; idx <= n; idx++) {
+    memo[idx * w + m] = 1;
+  }
+
+  for (int j = m - 1; j >= 0; j--) {
+    for (int i = n - 1; i >= 0; i--) {
+      unsigned long long ways = 0;
+      if (s[i] == t[j])
+        ways += memo[(i + 1) * w + (j + 1)];
+      ways += memo[(i + 1) * w + j];
+      memo[i * w + j] = ways;
     }
   }
-  int res = (int)dp[n * w + m];
-  free(dp);
+
+  int res = (int)memo[0];
+  free(memo);
   return res;
 }
