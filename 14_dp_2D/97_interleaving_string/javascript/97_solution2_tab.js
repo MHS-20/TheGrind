@@ -9,16 +9,18 @@ var isInterleave = function (s1, s2, s3) {
   if (n + m !== s3.length) return false;
 
   const dp = Array.from({ length: n + 1 }, () => new Array(m + 1).fill(false));
-  dp[0][0] = true; // empty + empty = empty
 
-  for (let i = 0; i <= n; i++) {
-    for (let j = 0; j <= m; j++) {
-      if (i === 0 && j === 0) continue;
-      const k = i + j - 1; // last char of s3 prefix
-      const fromS1 = i > 0 && dp[i - 1][j] && s1[i - 1] === s3[k];
-      const fromS2 = j > 0 && dp[i][j - 1] && s2[j - 1] === s3[k];
-      dp[i][j] = fromS1 || fromS2;
+  dp[n][m] = true;
+  for (let i = n; i >= 0; i--) {
+    for (let j = m; j >= 0; j--) {
+      if (i === n && j === m) continue;
+
+      let res = false;
+      if (i < n && dp[i + 1][j]) res = res || s1[i] === s3[i + j];
+      if (j < m && dp[i][j + 1]) res = res || s2[j] === s3[i + j];
+      dp[i][j] = res;
     }
   }
-  return dp[n][m];
+
+  return dp[0][0];
 };

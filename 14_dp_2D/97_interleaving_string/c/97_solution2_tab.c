@@ -9,19 +9,23 @@ bool isInterleave(char *s1, char *s2, char *s3) {
 
   int w = m + 1;
   bool *dp = calloc((n + 1) * w, sizeof(bool)); // dp[i * w + j]
-  dp[0] = true;                                 // empty + empty = empty
 
-  for (int i = 0; i <= n; i++) {
-    for (int j = 0; j <= m; j++) {
-      if (i == 0 && j == 0)
+  dp[n * w + m] = true;
+  for (int i = n; i >= 0; i--) {
+    for (int j = m; j >= 0; j--) {
+      if (i == n && j == m)
         continue;
-      int k = i + j - 1; // last char of s3 prefix
-      bool fromS1 = i > 0 && dp[(i - 1) * w + j] && s1[i - 1] == s3[k];
-      bool fromS2 = j > 0 && dp[i * w + (j - 1)] && s2[j - 1] == s3[k];
-      dp[i * w + j] = fromS1 || fromS2;
+
+      bool res = false;
+      if (i < n && dp[(i + 1) * w + j])
+        res = res || s1[i] == s3[i + j];
+      if (j < m && dp[i * w + (j + 1)])
+        res = res || s2[j] == s3[i + j];
+      dp[i * w + j] = res;
     }
   }
-  bool res = dp[n * w + m];
+
+  bool res = dp[0];
   free(dp);
   return res;
 }

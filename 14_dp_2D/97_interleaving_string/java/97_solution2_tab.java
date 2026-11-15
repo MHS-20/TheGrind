@@ -5,18 +5,22 @@ class Solution {
             return false;
 
         boolean[][] dp = new boolean[n + 1][m + 1];
-        dp[0][0] = true; // empty + empty = empty
 
-        for (int i = 0; i <= n; i++) {
-            for (int j = 0; j <= m; j++) {
-                if (i == 0 && j == 0)
+        dp[n][m] = true;
+        for (int i = n; i >= 0; i--) {
+            for (int j = m; j >= 0; j--) {
+                if (i == n && j == m)
                     continue;
-                int k = i + j - 1; // last char of s3 prefix
-                boolean fromS1 = i > 0 && dp[i - 1][j] && s1.charAt(i - 1) == s3.charAt(k);
-                boolean fromS2 = j > 0 && dp[i][j - 1] && s2.charAt(j - 1) == s3.charAt(k);
-                dp[i][j] = fromS1 || fromS2;
+
+                boolean res = false;
+                if (i < n && dp[i + 1][j])
+                    res = res || s1.charAt(i) == s3.charAt(i + j);
+                if (j < m && dp[i][j + 1])
+                    res = res || s2.charAt(j) == s3.charAt(i + j);
+                dp[i][j] = res;
             }
         }
-        return dp[n][m];
+
+        return dp[0][0];
     }
 }

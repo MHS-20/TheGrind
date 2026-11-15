@@ -20,10 +20,10 @@ impl Solution {
         let k = i + j; // position in s3
         let mut res = false;
         if i < a.len() && a[i] == c[k] {
-            res = Self::f(i + 1, j, a, b, c, dp); // take from s1
+            res = res || Self::f(i + 1, j, a, b, c, dp); // take from s1
         }
-        if !res && j < b.len() && b[j] == c[k] {
-            res = Self::f(i, j + 1, a, b, c, dp); // take from s2
+        if j < b.len() && b[j] == c[k] {
+            res = res || Self::f(i, j + 1, a, b, c, dp); // take from s2
         }
 
         dp[i][j] = Some(res);

@@ -16,8 +16,8 @@ var isInterleave = function (s1, s2, s3) {
 
     const k = i + j; // position in s3
     let res = false;
-    if (i < n && s1[i] === s3[k]) res = f(i + 1, j); // take from s1
-    if (!res && j < m && s2[j] === s3[k]) res = f(i, j + 1); // take from s2
+    if (i < n && s1[i] === s3[k]) res = res || f(i + 1, j); // take from s1
+    if (j < m && s2[j] === s3[k]) res = res || f(i, j + 1); // take from s2
 
     return (dp[i][j] = res);
   };

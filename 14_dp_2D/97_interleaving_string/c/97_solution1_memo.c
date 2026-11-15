@@ -16,9 +16,9 @@ static bool f(int i, int j) {
   int k = i + j; // position in s3
   bool res = false;
   if (i < n && a[i] == c[k])
-    res = f(i + 1, j); // take from s1
-  if (!res && j < m && b[j] == c[k])
-    res = f(i, j + 1); // take from s2
+    res = res || f(i + 1, j); // take from s1
+  if (j < m && b[j] == c[k])
+    res = res || f(i, j + 1); // take from s2
 
   *memo = res;
   return res;

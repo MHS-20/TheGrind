@@ -26,10 +26,10 @@ func isInterleave(s1 string, s2 string, s3 string) bool {
 		k := i + j // position in s3
 		res := false
 		if i < n && s1[i] == s3[k] {
-			res = f(i+1, j) // take from s1
+			res = res || f(i+1, j) // take from s1
 		}
-		if !res && j < m && s2[j] == s3[k] {
-			res = f(i, j+1) // take from s2
+		if j < m && s2[j] == s3[k] {
+			res = res || f(i, j+1) // take from s2
 		}
 
 		dp[i][j] = 0

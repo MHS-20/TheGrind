@@ -7,19 +7,25 @@ impl Solution {
         }
 
         let mut dp = vec![vec![false; m + 1]; n + 1];
-        dp[0][0] = true; // empty + empty = empty
 
-        for i in 0..=n {
-            for j in 0..=m {
-                if i == 0 && j == 0 {
+        dp[n][m] = true;
+        for i in (0..=n).rev() {
+            for j in (0..=m).rev() {
+                if i == n && j == m {
                     continue;
                 }
-                let k = i + j - 1; // last char of s3 prefix
-                let from_s1 = i > 0 && dp[i - 1][j] && a[i - 1] == c[k];
-                let from_s2 = j > 0 && dp[i][j - 1] && b[j - 1] == c[k];
-                dp[i][j] = from_s1 || from_s2;
+
+                let mut res = false;
+                if i < n && dp[i + 1][j] {
+                    res = res || a[i] == c[i + j];
+                }
+                if j < m && dp[i][j + 1] {
+                    res = res || b[j] == c[i + j];
+                }
+                dp[i][j] = res;
             }
         }
-        dp[n][m]
+
+        dp[0][0]
     }
 }

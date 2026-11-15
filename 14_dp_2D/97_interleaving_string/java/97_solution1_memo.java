@@ -10,9 +10,9 @@ class Solution {
         int k = i + j; // position in s3
         boolean res = false;
         if (i < s1.length() && s1.charAt(i) == s3.charAt(k))
-            res = f(i + 1, j, s1, s2, s3); // take from s1
-        if (!res && j < s2.length() && s2.charAt(j) == s3.charAt(k))
-            res = f(i, j + 1, s1, s2, s3); // take from s2
+            res = res || f(i + 1, j, s1, s2, s3); // take from s1
+        if (j < s2.length() && s2.charAt(j) == s3.charAt(k))
+            res = res || f(i, j + 1, s1, s2, s3); // take from s2
 
         return dp[i][j] = res;
     }

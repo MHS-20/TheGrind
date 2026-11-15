@@ -15,9 +15,9 @@ public:
     int k = i + j; // position in s3
     bool res = false;
     if (i < s1.size() && s1[i] == s3[k])
-      res = f(i + 1, j, s1, s2, s3, dp); // take from s1
-    if (!res && j < s2.size() && s2[j] == s3[k])
-      res = f(i, j + 1, s1, s2, s3, dp); // take from s2
+      res = res || f(i + 1, j, s1, s2, s3, dp); // take from s1
+    if (j < s2.size() && s2[j] == s3[k])
+      res = res || f(i, j + 1, s1, s2, s3, dp); // take from s2
 
     return dp[i][j] = res;
   }

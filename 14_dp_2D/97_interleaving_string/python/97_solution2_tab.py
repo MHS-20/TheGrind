@@ -5,14 +5,18 @@ class Solution:
             return False
 
         dp = [[False] * (m + 1) for _ in range(n + 1)]
-        dp[0][0] = True  # empty + empty = empty
 
-        for i in range(n + 1):
-            for j in range(m + 1):
-                if i == 0 and j == 0:
+        dp[n][m] = True
+        for i in range(n, -1, -1):
+            for j in range(m, -1, -1):
+                if i == n and j == m:
                     continue
-                k = i + j - 1  # last char of s3 prefix
-                from_s1 = i > 0 and dp[i - 1][j] and s1[i - 1] == s3[k]
-                from_s2 = j > 0 and dp[i][j - 1] and s2[j - 1] == s3[k]
-                dp[i][j] = from_s1 or from_s2
-        return dp[n][m]
+
+                res = False
+                if i < n and dp[i + 1][j]:
+                    res = res or s1[i] == s3[i + j]
+                if j < m and dp[i][j + 1]:
+                    res = res or s2[j] == s3[i + j]
+                dp[i][j] = res
+
+        return dp[0][0]

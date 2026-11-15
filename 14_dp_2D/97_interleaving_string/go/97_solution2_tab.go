@@ -10,18 +10,24 @@ func isInterleave(s1 string, s2 string, s3 string) bool {
 	for i := range dp {
 		dp[i] = make([]bool, m+1)
 	}
-	dp[0][0] = true // empty + empty = empty
 
-	for i := 0; i <= n; i++ {
-		for j := 0; j <= m; j++ {
-			if i == 0 && j == 0 {
+	dp[n][m] = true
+	for i := n; i >= 0; i-- {
+		for j := m; j >= 0; j-- {
+			if i == n && j == m {
 				continue
 			}
-			k := i + j - 1 // last char of s3 prefix
-			fromS1 := i > 0 && dp[i-1][j] && s1[i-1] == s3[k]
-			fromS2 := j > 0 && dp[i][j-1] && s2[j-1] == s3[k]
-			dp[i][j] = fromS1 || fromS2
+
+			res := false
+			if i < n && dp[i+1][j] {
+				res = res || s1[i] == s3[i+j]
+			}
+			if j < m && dp[i][j+1] {
+				res = res || s2[j] == s3[i+j]
+			}
+			dp[i][j] = res
 		}
 	}
-	return dp[n][m]
+
+	return dp[0][0]
 }

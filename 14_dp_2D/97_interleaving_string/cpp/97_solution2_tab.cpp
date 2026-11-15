@@ -10,19 +10,23 @@ public:
     if (n + m != s3.size())
       return false;
 
-    vector<vector<bool>> dp(n + 1, vector<bool>(m + 1, false));
-    dp[0][0] = true; // empty + empty = empty
+    vector<vector<int>> dp(n + 1, vector<int>(m + 1, -1));
 
-    for (int i = 0; i <= n; i++) {
-      for (int j = 0; j <= m; j++) {
-        if (i == 0 && j == 0)
+    dp[n][m] = 1;
+    for (int i = n; i >= 0; i--) {
+      for (int j = m; j >= 0; j--) {
+        if (i == n && j == m)
           continue;
-        int k = i + j - 1; // last char of s3 prefix
-        bool fromS1 = i > 0 && dp[i - 1][j] && s1[i - 1] == s3[k];
-        bool fromS2 = j > 0 && dp[i][j - 1] && s2[j - 1] == s3[k];
-        dp[i][j] = fromS1 || fromS2;
+
+        bool res = false;
+        if (i < n && dp[i + 1][j])
+          res = res || s1[i] == s3[i + j];
+        if (j < m && dp[i][j + 1])
+          res = res || s2[j] == s3[i + j];
+        dp[i][j] = res;
       }
     }
-    return dp[n][m];
+
+    return dp[0][0];
   }
 };

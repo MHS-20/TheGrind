@@ -20,9 +20,9 @@ class Solution:
             k = i + j  # position in s3
             res = False
             if i < n and s1[i] == s3[k]:
-                res = f(i + 1, j)  # take from s1
-            if not res and j < m and s2[j] == s3[k]:
-                res = f(i, j + 1)  # take from s2
+                res = res or f(i + 1, j)  # take from s1
+            if j < m and s2[j] == s3[k]:
+                res = res or f(i, j + 1)  # take from s2
 
             dp[i][j] = res
             return res
