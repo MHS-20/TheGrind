@@ -1,18 +1,20 @@
 class Solution:
     def isMatch(self, s: str, p: str) -> bool:
         n, m = len(s), len(p)
+        # dp[i][j]: does s[i..] match p[j..]?
         dp = [[False] * (m + 1) for _ in range(n + 1)]
-        dp[0][0] = True
 
-        def matches(i: int, j: int) -> bool:  # s[i-1] vs p[j-1]
-            return p[j - 1] == "." or s[i - 1] == p[j - 1]
+        # base case: empty pattern matches only the empty string
+        dp[n][m] = True  # dp[i][m] for i < n stays False
 
-        for i in range(n + 1):
-            for j in range(1, m + 1):
-                if p[j - 1] == "*":
-                    dp[i][j] = dp[i][j - 2]  # zero copies
-                    if i > 0 and matches(i, j - 1):
-                        dp[i][j] = dp[i][j] or dp[i - 1][j]  # one more copy
+        for i in range(n, -1, -1):  # row i reads row i+1 → bottom-up
+            for j in range(m - 1, -1, -1):  # reads j+1, j+2 → right-to-left
+                match = i < n and (s[i] == p[j] or p[j] == ".")
+
+                if j + 1 < m and p[j + 1] == "*":
+                    dp[i][j] = dp[i][j + 2] or (  # zero copies of x*
+                        match and dp[i + 1][j]  # one more copy
+                    )
                 else:
-                    dp[i][j] = i > 0 and matches(i, j) and dp[i - 1][j - 1]
-        return dp[n][m]
+                    dp[i][j] = match and dp[i + 1][j + 1]
+        return dp[0][0]

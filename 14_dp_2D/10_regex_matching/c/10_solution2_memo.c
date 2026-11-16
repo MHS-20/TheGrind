@@ -2,39 +2,40 @@
 #include <stdlib.h>
 #include <string.h>
 
-static const char *S, *Pt;
-static int w;
-static int *dp; // dp[i * w + j], -1 = not computed
+static const char *S, *P;
+static int n, m, w;
+static int *memo; // memo[i * w + j], -1 = not computed
 
-static bool matches(int i, int j) { // s[i-1] vs p[j-1]
-  return Pt[j - 1] == '.' || S[i - 1] == Pt[j - 1];
-}
+static bool dpf(int i, int j) {
+  // pattern used up: match only if the string is used up too
+  if (j == m)
+    return i == n;
+  if (memo[i * w + j] != -1)
+    return memo[i * w + j];
 
-static bool f(int i, int j) {
-  if (j == 0)
-    return i == 0; // empty pattern matches only empty s
-  if (dp[i * w + j] != -1)
-    return dp[i * w + j];
-
+  // does the current pattern char match s[i]? (s may already be used up)
+  bool match = i < n && (S[i] == P[j] || P[j] == '.');
   bool res;
-  if (Pt[j - 1] == '*') {
-    res = f(i, j - 2); // zero copies
-    if (!res && i > 0 && matches(i, j - 1))
-      res = f(i - 1, j); // one more copy
+
+  if (j + 1 < m && P[j + 1] == '*') {
+    // treat "x*" as one unit: either use zero copies (skip it),
+    // or match one copy and stay on "x*" to allow more
+    res = dpf(i, j + 2) || (match && dpf(i + 1, j));
   } else {
-    res = i > 0 && matches(i, j) && f(i - 1, j - 1);
+    // plain char or '.': must match exactly one character
+    res = match && dpf(i + 1, j + 1);
   }
-  dp[i * w + j] = res;
+
+  memo[i * w + j] = res;
   return res;
 }
 
 bool isMatch(char *s, char *p) {
-  int n = strlen(s), m = strlen(p);
-  S = s, Pt = p, w = m + 1;
-  dp = malloc((n + 1) * w * sizeof(int));
+  S = s, P = p, n = strlen(s), m = strlen(p), w = m + 1;
+  memo = malloc((n + 1) * w * sizeof(int));
   for (int k = 0; k < (n + 1) * w; k++)
-    dp[k] = -1;
-  bool res = f(n, m);
-  free(dp);
+    memo[k] = -1;
+  bool res = dpf(0, 0);
+  free(memo);
   return res;
 }

@@ -1,28 +1,32 @@
+import sys
 from typing import List, Optional
 
 
 class Solution:
     def isMatch(self, s: str, p: str) -> bool:
         n, m = len(s), len(p)
-        dp: List[List[Optional[bool]]] = [[None] * (m + 1) for _ in range(n + 1)]
+        sys.setrecursionlimit(max(1000, 2 * (n + m) + 100))  # depth can reach n + m
+        memo: List[List[Optional[bool]]] = [[None] * (m + 1) for _ in range(n + 1)]
 
-        def matches(i: int, j: int) -> bool:  # s[i-1] vs p[j-1]
-            return p[j - 1] == "." or s[i - 1] == p[j - 1]
+        def dpf(i: int, j: int) -> bool:
+            # pattern used up: match only if the string is used up too
+            if j == m:
+                return i == n
+            if memo[i][j] is not None:
+                return memo[i][j]
 
-        def f(i: int, j: int) -> bool:
-            if j == 0:
-                return i == 0  # empty pattern matches only empty s
-            if dp[i][j] is not None:
-                return dp[i][j]
+            # does the current pattern char match s[i]? (s may already be used up)
+            match = i < n and (s[i] == p[j] or p[j] == ".")
 
-            if p[j - 1] == "*":
-                res = f(i, j - 2)  # zero copies
-                if not res and i > 0 and matches(i, j - 1):
-                    res = f(i - 1, j)  # one more copy
+            if j + 1 < m and p[j + 1] == "*":
+                # treat "x*" as one unit: either use zero copies (skip it),
+                # or match one copy and stay on "x*" to allow more
+                res = dpf(i, j + 2) or (match and dpf(i + 1, j))
             else:
-                res = i > 0 and matches(i, j) and f(i - 1, j - 1)
+                # plain char or '.': must match exactly one character
+                res = match and dpf(i + 1, j + 1)
 
-            dp[i][j] = res
+            memo[i][j] = res
             return res
 
-        return f(n, m)
+        return dpf(0, 0)

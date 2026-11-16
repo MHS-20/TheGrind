@@ -2,31 +2,29 @@
 #include <stdlib.h>
 #include <string.h>
 
-static const char *S, *Pt;
-
-static bool matches(int i, int j) { // s[i-1] vs p[j-1]
-  return Pt[j - 1] == '.' || S[i - 1] == Pt[j - 1];
-}
-
 bool isMatch(char *s, char *p) {
   int n = strlen(s), m = strlen(p);
-  S = s, Pt = p;
   int w = m + 1;
-  bool *dp = calloc((n + 1) * w, sizeof(bool)); // dp[i * w + j]
-  dp[0] = true;
+  // dp[i * w + j]: does s[i..] match p[j..]?
+  bool *dp = calloc((n + 1) * w, sizeof(bool));
 
-  for (int i = 0; i <= n; i++) {
-    for (int j = 1; j <= m; j++) {
-      if (p[j - 1] == '*') {
-        dp[i * w + j] = dp[i * w + (j - 2)]; // zero copies
-        if (i > 0 && matches(i, j - 1))
-          dp[i * w + j] = dp[i * w + j] || dp[(i - 1) * w + j]; // one more copy
+  // base case: empty pattern matches only the empty string
+  dp[n * w + m] = true; // dp[i][m] for i < n stays false
+
+  for (int i = n; i >= 0; i--) {       // row i reads row i+1 → bottom-up
+    for (int j = m - 1; j >= 0; j--) { // reads j+1, j+2 → right-to-left
+      bool match = i < n && (s[i] == p[j] || p[j] == '.');
+
+      if (j + 1 < m && p[j + 1] == '*') {
+        dp[i * w + j] = dp[i * w + j + 2] ||                // zero copies of x*
+                        (match && dp[(i + 1) * w + j]);     // one more copy
       } else {
-        dp[i * w + j] = i > 0 && matches(i, j) && dp[(i - 1) * w + (j - 1)];
+        dp[i * w + j] = match && dp[(i + 1) * w + j + 1];
       }
     }
   }
-  bool res = dp[n * w + m];
+
+  bool res = dp[0];
   free(dp);
   return res;
 }

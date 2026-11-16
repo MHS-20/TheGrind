@@ -1,24 +1,24 @@
 class Solution {
     public boolean isMatch(String s, String p) {
         int n = s.length(), m = p.length();
+        // dp[i][j]: does s[i..] match p[j..]?
         boolean[][] dp = new boolean[n + 1][m + 1];
-        dp[0][0] = true;
 
-        for (int i = 0; i <= n; i++) {
-            for (int j = 1; j <= m; j++) {
-                if (p.charAt(j - 1) == '*') {
-                    dp[i][j] = dp[i][j - 2]; // zero copies
-                    if (i > 0 && matches(s, p, i, j - 1))
-                        dp[i][j] = dp[i][j] || dp[i - 1][j]; // one more copy
+        // base case: empty pattern matches only the empty string
+        dp[n][m] = true; // dp[i][m] for i < n stays false
+
+        for (int i = n; i >= 0; i--) { // row i reads row i+1 → bottom-up
+            for (int j = m - 1; j >= 0; j--) { // reads j+1, j+2 → right-to-left
+                boolean match = i < n && (s.charAt(i) == p.charAt(j) || p.charAt(j) == '.');
+
+                if (j + 1 < m && p.charAt(j + 1) == '*') {
+                    dp[i][j] = dp[i][j + 2] || // zero copies of x*
+                            (match && dp[i + 1][j]); // one more copy
                 } else {
-                    dp[i][j] = i > 0 && matches(s, p, i, j) && dp[i - 1][j - 1];
+                    dp[i][j] = match && dp[i + 1][j + 1];
                 }
             }
         }
-        return dp[n][m];
-    }
-
-    private boolean matches(String s, String p, int i, int j) { // s[i-1] vs p[j-1]
-        return p.charAt(j - 1) == '.' || s.charAt(i - 1) == p.charAt(j - 1);
+        return dp[0][0];
     }
 }

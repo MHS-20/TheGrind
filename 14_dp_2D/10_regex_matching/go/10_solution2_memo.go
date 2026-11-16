@@ -2,43 +2,43 @@ package dp
 
 func isMatch(s string, p string) bool {
 	n, m := len(s), len(p)
-	dp := make([][]int, n+1) // -1 = not computed, 0 = false, 1 = true
-	for i := range dp {
-		dp[i] = make([]int, m+1)
-		for j := range dp[i] {
-			dp[i][j] = -1
+	memo := make([][]int, n+1) // -1 = not computed, 0 = false, 1 = true
+	for i := range memo {
+		memo[i] = make([]int, m+1)
+		for j := range memo[i] {
+			memo[i][j] = -1
 		}
 	}
 
-	matches := func(i, j int) bool { // s[i-1] vs p[j-1]
-		return p[j-1] == '.' || s[i-1] == p[j-1]
-	}
-
-	var f func(i, j int) bool
-	f = func(i, j int) bool {
-		if j == 0 {
-			return i == 0 // empty pattern matches only empty s
+	var dpf func(i, j int) bool
+	dpf = func(i, j int) bool {
+		// pattern used up: match only if the string is used up too
+		if j == m {
+			return i == n
 		}
-		if dp[i][j] != -1 {
-			return dp[i][j] == 1
+		if memo[i][j] != -1 {
+			return memo[i][j] == 1
 		}
 
+		// does the current pattern char match s[i]? (s may already be used up)
+		match := i < n && (s[i] == p[j] || p[j] == '.')
 		var res bool
-		if p[j-1] == '*' {
-			res = f(i, j-2) // zero copies
-			if !res && i > 0 && matches(i, j-1) {
-				res = f(i-1, j) // one more copy
-			}
+
+		if j+1 < m && p[j+1] == '*' {
+			// treat "x*" as one unit: either use zero copies (skip it),
+			// or match one copy and stay on "x*" to allow more
+			res = dpf(i, j+2) || (match && dpf(i+1, j))
 		} else {
-			res = i > 0 && matches(i, j) && f(i-1, j-1)
+			// plain char or '.': must match exactly one character
+			res = match && dpf(i+1, j+1)
 		}
 
-		dp[i][j] = 0
+		memo[i][j] = 0
 		if res {
-			dp[i][j] = 1
+			memo[i][j] = 1
 		}
 		return res
 	}
 
-	return f(n, m)
+	return dpf(0, 0)
 }
