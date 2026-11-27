@@ -61,19 +61,23 @@ The tests call the public API only (park, book, split), not internal classes, so
 
 Rate limiter, LRU cache and the key-value store with transactions are in [practical](../20_practical/) and are not repeated here.
 
-| Problem | Level | Stages | Status |
-|---|---|---|---|
-| Parking lot | Easy | spots and tickets, vehicle types and pricing, concurrent entry | planned |
-| Vending machine | Easy | selection and payment, change and states, restocking | planned |
-| Tic-tac-toe | Easy | board and turns, n×n and k in a row, undo | planned |
-| Library management | Easy | books and loans, reservations, fines | planned |
-| Elevator system | Medium | one car, several cars and scheduling, concurrent requests | planned |
-| Snake and ladder | Medium | board and players, custom dice, several games at once | planned |
-| Splitwise | Medium | equal splits and balances, exact and percentage splits, simplifying debts | planned |
-| Pub-sub | Medium | topics and subscribers, filters, concurrent publishers | planned |
-| Movie booking | Hard | shows and seats, pricing tiers, two users on one seat | planned |
-| Chess | Hard | board and moves, check and checkmate, undo | planned |
-| Ride sharing | Hard | riders and drivers, matching strategy, surge pricing | planned |
-| Food delivery | Hard | restaurants and orders, order states, assigning couriers | planned |
+Tier 1 is what Amazon-style LLD rounds ask most; tier 2 is next. Ride sharing, food delivery and online shopping are planned as tier 3.
 
-When a problem is solved, its folder is added and its row links to it.
+| Problem | Tier | Level | Stages | Status |
+|---|---|---|---|---|
+| [Parking lot](parking_lot/) | 1 | Easy | spots and tickets, EV spots and weekend pricing, concurrent gates | stages written |
+| [Vending machine](vending_machine/) | 1 | Easy | selection and payment, states and change, restocking | stages written |
+| [Library management](library_management/) | 1 | Easy | books and loans, reservations and fines, member types | stages written |
+| [File search (Unix find)](file_search/) | 1 | Medium | basic filters, AND/OR/NOT, large trees | stages written |
+| [Amazon Locker](amazon_locker/) | 1 | Medium | slots and codes, expiry and locations, concurrent couriers | stages written |
+| [ATM](atm/) | 1 | Medium | session and PIN, note dispensing, debit/dispense consistency | stages written |
+| [Elevator system](elevator/) | 1 | Medium | one car (SCAN), several cars and dispatch, concurrent requests | stages written |
+| [Splitwise](splitwise/) | 1 | Medium | equal splits and balances, exact and percentage splits, simplifying debts | stages written |
+| [Movie booking](movie_booking/) | 1 | Hard | shows and seats, pricing and holds, two users on one seat | stages written |
+| [Tic-tac-toe](tic_tac_toe/) | 2 | Easy | board and turns, n×n and k in a row, undo and bots | stages written |
+| [Snake and ladder](snake_and_ladder/) | 2 | Medium | board and players, dice and rule variants, several games | stages written |
+| [Logging framework](logger/) | 2 | Medium | levels and appenders, hierarchy and formatters, async appender | stages written |
+| [Pub-sub](pub_sub/) | 2 | Medium | topics and subscribers, filters and offsets, concurrent delivery | stages written |
+| [Chess](chess/) | 2 | Hard | board and moves, check and checkmate, undo | stages written |
+
+When a problem is solved, its status becomes solved and its patterns are added to the "Used in" tables of the pattern lessons.
