@@ -6,17 +6,14 @@ docs_dir: site_src
 
 theme:
   name: sorrow
+  mermaid: true
 
 markdown_extensions:
   - tables
   - toc
   - pymdownx.highlight:
       use_pygments: false
-  - pymdownx.superfences:
-      custom_fences:
-        - name: mermaid
-          class: mermaid
-          format: !!python/name:pymdownx.superfences.fence_div_format
+  - pymdownx.superfences
   - pymdownx.tabbed:
       alternate_style: true
 
@@ -30,10 +27,6 @@ plugins:
 
 extra_css:
   - extra.css
-
-extra_javascript:
-  - https://cdn.jsdelivr.net/npm/mermaid@11.4.1/dist/mermaid.min.js
-  - mermaid-init.js
 
 exclude_docs: |
   gen_pages.py
