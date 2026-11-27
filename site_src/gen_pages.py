@@ -159,6 +159,8 @@ copy_md("21_lld/README.md")
 nav.append("    * [Overview](21_lld/README.md)")
 for problem in sorted(p for p in (ROOT / "21_lld").iterdir() if (p / "README.md").exists()):
     nav.append(f"    * [{title_of(problem / 'README.md')}]({problem_page(problem, problem.name)})")
+    if (problem / "diagram.md").exists():
+        copy_md(str((problem / "diagram.md").relative_to(ROOT)))
 
 # HackerRank
 nav.append("* HackerRank")

@@ -19,18 +19,7 @@ The board game: players roll a die and move along a board of cells with snakes a
 
 ## Class diagram
 
-```
-+-------------------+  1   1  +-------------------+     <<interface>>
-| Game              |◆------->| Board             |◆--* CellEffect
-+-------------------+         +-------------------+     △    △     △
-| - positions       |                                Snake Ladder Trap
-| - turn            |  1   1  <<interface>> Dice
-| + playTurn()      |-------->  △          △
-| + winner()        |        RandomDice  FixedDice
-+-------------------+
-     | *
-   Player             GameService ◆--* Game
-```
+See [diagram.md](diagram.md).
 
 ## Patterns used
 
@@ -51,3 +40,5 @@ The board game: players roll a die and move along a board of cells with snakes a
 ## Files
 
 `SnakeAndLadder.java`: the solution, with checks for each stage in `main`.
+
+`diagram.md`: the class diagram (Mermaid).

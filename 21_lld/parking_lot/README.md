@@ -20,30 +20,7 @@ A multi-floor parking lot that assigns spots to vehicles at entry and charges a 
 
 ## Class diagram
 
-```
-+------------------------+  1      1  +--------------------+
-| ParkingLot             |◇----------> | <<interface>>      |
-+------------------------+             | PricingStrategy    |
-| - tickets: Map<id,T>   |             +--------------------+
-| + park(v, t): Opt<T>   |             | + fee(ticket, exit)|
-| + unpark(tk, t): long  |             +--------------------+
-+------------------------+                △            △
-     ◆ 1                                  :            :
-     | 1..*                        HourlyPricing  WeekendPricing(wraps)
-+------------------------+                      ChargingSurcharge(wraps)
-| Floor                  |
-+------------------------+
-| + findSpot(v): Opt<S>  |
-+------------------------+
-     ◆ 1
-     | 1..*
-+------------------------+  1   0..1  +--------------------+
-| Spot                   |----------->| Vehicle (record)   |
-+------------------------+            | plate, type, ev    |
-| - size, features       |            +--------------------+
-| + canFit(v): boolean   |
-+------------------------+
-```
+See [diagram.md](diagram.md).
 
 ## Patterns used
 
@@ -65,3 +42,5 @@ A multi-floor parking lot that assigns spots to vehicles at entry and charges a 
 ## Files
 
 `ParkingLot.java`: the solution, with checks for each stage in `main`.
+
+`diagram.md`: the class diagram (Mermaid).

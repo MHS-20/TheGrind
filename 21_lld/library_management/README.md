@@ -20,21 +20,7 @@ A library that lends copies of books to members and tracks returns, reservations
 
 ## Class diagram
 
-```
-Book ◆---* Copy(status)              ReservationQueue: Map<isbn, Deque<Member>>
-  ^                ^
-  |                | 1
-  |            Loan(copy, member, due, returned)
-  |                | *
-+-----------------------+       +----------------------+
-| Library               |       | Member               |
-+-----------------------+       +----------------------+
-| + search(q)           |       | - fines: long        |
-| + borrow(m, isbn, d)  |       | - policy ------------+--> <<interface>> MembershipPolicy
-| + giveBack(copy, d)   |       +----------------------+        △            △
-| + reserve(m, isbn)    |                                    Student      Faculty
-+-----------------------+-----> Notifier
-```
+See [diagram.md](diagram.md).
 
 ## Patterns used
 
@@ -55,3 +41,5 @@ Book ◆---* Copy(status)              ReservationQueue: Map<isbn, Deque<Member>
 ## Files
 
 `Library.java`: the solution, with checks for each stage in `main`.
+
+`diagram.md`: the class diagram (Mermaid).

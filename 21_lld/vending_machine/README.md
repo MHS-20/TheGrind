@@ -18,32 +18,7 @@ A machine that sells products from slots, accepts coins, and returns change.
 
 ## Class diagram
 
-```
-+--------------------------+       +-------------------------+
-| VendingMachine           |------>| <<interface>>           |
-+--------------------------+ state | VendingState            |
-| - credit: int            |       +-------------------------+
-| + insert(coin)           |       | insert / select /       |
-| + select(code): Sale     |       | cancel / service        |
-| + cancel(): List<Coin>   |       +-------------------------+
-+--------------------------+         △     △      △       △
-   ◆ 1           ◆ 1                Idle HasMoney Dispensing OutOfService
-   |             |
-+-----------+  +-------------------+
-| Inventory |  | CoinBox           |
-+-----------+  +-------------------+
-| slots     |  | + makeChange(amt) |
-+-----------+  +-------------------+
-```
-
-## State transitions
-
-| State \ action | insert | select | cancel | enter service | leave service |
-|---|---|---|---|---|---|
-| Idle | → HasMoney | error | nothing to return | → OutOfService | error |
-| HasMoney | add credit | → Dispensing → Idle (if paid and change possible) | → Idle | error | error |
-| Dispensing | error | error | error | error | error |
-| OutOfService | error | error | error | error | → Idle |
+See [diagram.md](diagram.md).
 
 ## Patterns used
 
@@ -63,3 +38,5 @@ A machine that sells products from slots, accepts coins, and returns change.
 ## Files
 
 `VendingMachine.java`: the solution, with checks for each stage in `main`.
+
+`diagram.md`: the class diagram (Mermaid).

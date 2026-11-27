@@ -19,23 +19,7 @@ An in-process message broker: publishers send messages to topics, and every subs
 
 ## Class diagram
 
-```
-+-------------------------+
-| Broker                  |
-+-------------------------+
-| + createTopic(name)     |
-| + subscribe(t, s, f, o) |
-| + publish(t, msg)       |
-+-------------------------+
-     ◆ 1
-     | *
-+-------------------------+  1   *  +-------------------------+     <<interface>>
-| Topic                   |◆------->| Subscription            |---->  Subscriber
-+-------------------------+         +-------------------------+
-| - log: List<Message>    |         | - offset: long          |---->  Filter
-+-------------------------+         | + deliverPending()      |
-                                    +-------------------------+
-```
+See [diagram.md](diagram.md).
 
 ## Patterns used
 
@@ -56,3 +40,5 @@ An in-process message broker: publishers send messages to topics, and every subs
 ## Files
 
 `PubSub.java`: the solution, with checks for each stage in `main`.
+
+`diagram.md`: the class diagram (Mermaid).

@@ -18,22 +18,7 @@ A system for theatres, shows and seats, where users choose seats and pay for a b
 
 ## Class diagram
 
-```
-Theatre ◆---* Screen ◆---* Seat(row, no, category)
-                 ^
-                 | 1
-Movie <---1-- Show ◆---* SeatState(seat, status, holder, until)
-                 ^
-                 |
-+------------------------------+
-| BookingService               |-----> PricingStrategy
-+------------------------------+-----> PaymentGateway
-| + search(movie, city)        |-----> Clock
-| + hold(user, show, seats)    |
-| + confirm(holdId, account)   |
-| + cancel(bookingId)          |
-+------------------------------+
-```
+See [diagram.md](diagram.md).
 
 ## Patterns used
 
@@ -56,3 +41,5 @@ Movie <---1-- Show ◆---* SeatState(seat, status, holder, until)
 ## Files
 
 `BookingService.java`: the solution, with checks for each stage in `main`.
+
+`diagram.md`: the class diagram (Mermaid).

@@ -18,27 +18,7 @@ A building with elevator cars that serve requests from floor buttons and from bu
 
 ## Class diagram
 
-```
-+-----------------------+  1     1  +----------------------+
-| ElevatorSystem        |◇--------->| <<interface>>        |
-+-----------------------+           | Dispatcher           |
-| + call(floor, dir)    |           +----------------------+
-| + press(car, floor)   |           | + choose(cars, req)  |
-| + step()              |           +----------------------+
-| + state()             |              △              △
-+-----------------------+              :              :
-     ◆ 1                       NearestIdle     SoonestPass
-     | 1..*
-+-----------------------+
-| Car                   |
-+-----------------------+
-| - floor, direction    |
-| - up: TreeSet<int>    |
-| - down: TreeSet<int>  |
-| + addStop(f)          |
-| + step()              |
-+-----------------------+
-```
+See [diagram.md](diagram.md).
 
 ## Patterns used
 
@@ -60,3 +40,5 @@ A building with elevator cars that serve requests from floor buttons and from bu
 ## Files
 
 `ElevatorSystem.java`: the solution, with checks for each stage in `main`.
+
+`diagram.md`: the class diagram (Mermaid).

@@ -19,24 +19,7 @@ A cash machine that authenticates a card, shows a balance, and dispenses cash fr
 
 ## Class diagram
 
-```
-+-------------------+  state  +------------------+
-| Atm               |-------->| <<interface>>    |
-+-------------------+         | AtmState         |
-| + insert(card)    |         +------------------+
-| + enterPin(pin)   |          △      △        △
-| + withdraw(amt)   |        Idle CardInserted Authenticated
-| + deposit(amt)    |
-| + eject()         |  1   1  +------------------+
-+-------------------+-------->| <<interface>>    |
-     ◆ 1                      | Bank             |
-     |                        +------------------+
-+-------------------+                 △
-| CashDispenser     |                 :
-+-------------------+          InMemoryBank ◆--- * Account
-| 100 -> 50 -> 20   |
-+-------------------+
-```
+See [diagram.md](diagram.md).
 
 ## Patterns used
 
@@ -57,3 +40,5 @@ A cash machine that authenticates a card, shows a balance, and dispenses cash fr
 ## Files
 
 `Atm.java`: the solution, with checks for each stage in `main`.
+
+`diagram.md`: the class diagram (Mermaid).

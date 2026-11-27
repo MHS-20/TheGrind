@@ -19,19 +19,7 @@ An expense-sharing system: users add expenses paid by one person for a group, an
 
 ## Class diagram
 
-```
-+-------------------------+        +--------------------------+
-| ExpenseService          |------->| <<interface>>            |
-+-------------------------+        | SplitStrategy            |
-| + addExpense(...)       |        +--------------------------+
-| + balances(user)        |        | + split(amt, users, args)|
-| + settleUp(group)       |        +--------------------------+
-| + recordPayment(p)      |          △        △          △
-+-------------------------+      EqualSplit ExactSplit PercentSplit
-   ◆ 1          ◆ 1
-   | *          |
- Group ◆--* Expense      BalanceSheet: Map<user, Map<user, long>>
-```
+See [diagram.md](diagram.md).
 
 ## Patterns used
 
@@ -52,3 +40,5 @@ An expense-sharing system: users add expenses paid by one person for a group, an
 ## Files
 
 `ExpenseService.java`: the solution, with checks for each stage in `main`.
+
+`diagram.md`: the class diagram (Mermaid).

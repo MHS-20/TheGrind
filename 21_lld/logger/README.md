@@ -19,15 +19,7 @@ A small logging library: application code logs messages at a level, and the fram
 
 ## Class diagram
 
-```
-LogManager ◆---* Logger(name, level) ---*--> <<interface>> Appender
-                    | parent                   △          △            △
-                    v                     Console     Memory    AsyncAppender ◆--1 Appender
-                  Logger                                         (queue + thread)
-                                          Appender ---1--> <<interface>> Formatter
-                                                             △            △
-                                                           Plain         Json
-```
+See [diagram.md](diagram.md).
 
 ## Patterns used
 
@@ -50,3 +42,5 @@ LogManager ◆---* Logger(name, level) ---*--> <<interface>> Appender
 ## Files
 
 `Logging.java`: the solution, with checks for each stage in `main`.
+
+`diagram.md`: the class diagram (Mermaid).

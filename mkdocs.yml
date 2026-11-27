@@ -12,7 +12,11 @@ markdown_extensions:
   - toc
   - pymdownx.highlight:
       use_pygments: false
-  - pymdownx.superfences
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_div_format
   - pymdownx.tabbed:
       alternate_style: true
 
@@ -26,6 +30,10 @@ plugins:
 
 extra_css:
   - extra.css
+
+extra_javascript:
+  - path: mermaid-init.js
+    type: module
 
 exclude_docs: |
   gen_pages.py

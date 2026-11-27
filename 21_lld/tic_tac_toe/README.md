@@ -18,20 +18,7 @@ A game of tic-tac-toe between two players, generalised to bigger boards.
 
 ## Class diagram
 
-```
-+-----------------------+  1   1  +---------------------+
-| Game                  |◆------->| Board               |
-+-----------------------+         +---------------------+
-| - turn: int           |         | - cells: char[][]   |
-| - history: Deque<Move>|         | + place(r, c, s)    |
-| + move(p, r, c)       |         | + winsAt(r, c, k)   |
-| + undo()              |         +---------------------+
-| + status()            |
-+-----------------------+  1   *  +---------------------+     <<interface>>
-                          ------->| Player              |---->  MoveStrategy
-                                  +---------------------+       △        △
-                                                             Random   WinOrBlock
-```
+See [diagram.md](diagram.md).
 
 ## Patterns used
 
@@ -51,3 +38,5 @@ A game of tic-tac-toe between two players, generalised to bigger boards.
 ## Files
 
 `TicTacToe.java`: the solution, with checks for each stage in `main`.
+
+`diagram.md`: the class diagram (Mermaid).

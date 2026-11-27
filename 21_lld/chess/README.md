@@ -19,17 +19,7 @@ A two-player chess game that validates moves and detects the end of the game.
 
 ## Class diagram
 
-```
-+--------------------+  1   1  +--------------------+
-| Game               |◆------->| Board              |◆--64 Square --0..1--> Piece
-+--------------------+         +--------------------+
-| - toMove: Color    |         | + apply(move)      |      <<abstract>> Piece
-| - history: Deque<M>|         | + revert(move)     |      + candidateMoves(b, from)
-| + move(from, to)   |         +--------------------+        △   △   △    △    △    △
-| + undo()           |                                      K   Q   R    B    N    P
-| + status()         |---* Move(from, to, piece, captured, flags)
-+--------------------+
-```
+See [diagram.md](diagram.md).
 
 ## Patterns used
 
@@ -51,3 +41,5 @@ A two-player chess game that validates moves and detects the end of the game.
 ## Files
 
 `Chess.java`: the solution, with checks for each stage in `main`.
+
+`diagram.md`: the class diagram (Mermaid).

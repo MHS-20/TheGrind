@@ -103,16 +103,16 @@ Each item gives the page it belongs in: an existing page to extend, or a new pag
 
 ### String algorithms (new folder `15_strings`)
 
-- [ ] `15a_string_basics`: immutable strings and what building one costs in each language (StringBuilder, `join`, `strings.Builder`); comparing characters; counting with a fixed array of 26 or 128 entries.
-- [ ] `15b_pattern_matching`: naive search; the KMP prefix function; the Z-function.
-- [ ] `15c_rolling_hash`: Rabin-Karp, choosing the base and modulus, collisions, double hashing.
-- [ ] `15d_palindromes`: expanding from the centre (already used in 150), and Manacher in O(n).
+- [x] `15a_string_basics`: immutable strings and what building one costs in each language (StringBuilder, `join`, `strings.Builder`); comparing characters; counting with a fixed array of 26 or 128 entries.
+- [x] `15b_pattern_matching`: naive search; the KMP prefix function; the Z-function.
+- [x] `15c_rolling_hash`: Rabin-Karp, choosing the base and modulus, collisions, double hashing.
+- [x] `15d_palindromes`: expanding from the centre (already used in 150), and Manacher in O(n).
 
 ### Segment trees and Fenwick trees (`02_data_structures`, new pages)
 
-- [ ] `2k_fenwick_trees`: prefix sums with point updates, `i & -i` (links to `13e`), range updates via difference arrays.
-- [ ] `2l_segment_trees`: range queries with point updates, lazy propagation, and when a Fenwick tree is enough.
-- [ ] Practice problems: Range Sum Query Mutable (307), Count of Smaller Numbers After Self (315), My Calendar (729/731).
+- [x] `2k_fenwick_trees`: prefix sums with point updates, `i & -i` (links to `13e`), range updates via difference arrays.
+- [x] `2l_segment_trees`: range queries with point updates, lazy propagation, and when a Fenwick tree is enough.
+- [x] Practice problems: Range Sum Query Mutable (307), Count of Smaller Numbers After Self (315), My Calendar (729/731).
 
 ### PL/SQL (`16_sql_databases`, new pages)
 

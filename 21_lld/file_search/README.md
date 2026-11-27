@@ -17,20 +17,7 @@ An API like the Unix `find` command: search a directory tree for files that matc
 
 ## Class diagram
 
-```
-<<interface>> FsNode            <<interface>> Filter
-    △        △                  + matches(File): boolean
-  File    Directory ◆---* FsNode    △     △      △       △    △    △
-                                  Size  Ext  Name   And   Or   Not
-                                                     ◆     ◆    ◆
-                                                     | 2..*|    | 1
-                                                   Filter Filter Filter
-+--------------------------+
-| FileSearch               |
-+--------------------------+
-| + find(root, filter, k)  |
-+--------------------------+
-```
+See [diagram.md](diagram.md).
 
 ## Patterns used
 
@@ -52,3 +39,5 @@ An API like the Unix `find` command: search a directory tree for files that matc
 ## Files
 
 `FileSearch.java`: the solution, with checks for each stage in `main`.
+
+`diagram.md`: the class diagram (Mermaid).

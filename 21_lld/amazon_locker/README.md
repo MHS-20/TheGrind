@@ -20,20 +20,7 @@ Self-service lockers where a courier drops a package and the customer picks it u
 
 ## Class diagram
 
-```
-+------------------------+       +---------------------+
-| LockerService          |------>| <<interface>>       |
-+------------------------+       | LocationSelector    |
-| - codes: Map<code, PC> |       +---------------------+
-| + assign(pkg, addr)    |                 △
-| + deposit(slot, pkg)   |               Nearest
-| + pickup(code)         |
-| + expire()             |-----> CodeGenerator, Clock
-+------------------------+
-     ◆ 1
-     | *
-LockerLocation ◆---* Slot(size, status) ---0..1--> Package
-```
+See [diagram.md](diagram.md).
 
 ## Patterns used
 
@@ -55,3 +42,5 @@ LockerLocation ◆---* Slot(size, status) ---0..1--> Package
 ## Files
 
 `LockerService.java`: the solution, with checks for each stage in `main`.
+
+`diagram.md`: the class diagram (Mermaid).
