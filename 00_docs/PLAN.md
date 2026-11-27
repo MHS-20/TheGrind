@@ -114,7 +114,28 @@ Each item gives the page it belongs in: an existing page to extend, or a new pag
 - [ ] `2l_segment_trees`: range queries with point updates, lazy propagation, and when a Fenwick tree is enough.
 - [ ] Practice problems: Range Sum Query Mutable (307), Count of Smaller Numbers After Self (315), My Calendar (729/731).
 
-### Language specifics (new folder `19_language_specifics`)
+### PL/SQL (`16_sql_databases`, new pages)
+
+Oracle's procedural language, run on Oracle Database Free in Docker. Examples use the restaurant schema from `18`.
+
+- [x] `16j_plsql_blocks`: anonymous and named blocks, variables, `%TYPE` and `%ROWTYPE`, `SELECT INTO`, control flow, `DBMS_OUTPUT`.
+- [x] `16k_plsql_cursors`: implicit and explicit cursors, cursor `FOR` loops, parameters, `BULK COLLECT` and `FORALL`.
+- [x] `16l_plsql_procedures_and_exceptions`: procedures, functions, packages, predefined and user-defined exceptions, `RAISE_APPLICATION_ERROR`.
+- [x] `16m_plsql_triggers`: row and statement triggers, `:NEW` and `:OLD`, the mutating-table error, and a cursor loop vs one set-based statement.
+- [ ] Practice in `19_sql`: the course exercises (hospital stay fee, operator rating, elected candidates).
+
+### Document databases (new folder `19_document_databases`)
+
+MongoDB schema design, run on MongoDB 8 in Docker, with the restaurant domain so each design can be compared with the relational schema in `18`.
+
+- [x] `19a_documents_and_queries`: BSON, `_id`, CRUD, update operators and single-document atomicity, the aggregation pipeline, `$lookup`.
+- [x] `19b_embedding_vs_referencing`: the cardinalities (1:1, 1:few, 1:many, 1:squillions, N:M), two-way referencing, the 16 MB limit, the design method.
+- [x] `19c_relationship_patterns`: extended reference, subset, outlier, computed, bucket.
+- [x] `19d_structure_patterns`: polymorphic, attribute, trees (parent, children, ancestors, path), schema versioning.
+- [x] `19e_sizing_and_cost`: aggregate notation, document and collection sizes, documents and pages read per query.
+- [x] `19f_indexes_validation_transactions`: indexes on embedded fields and arrays, `$jsonSchema`, multi-document transactions.
+
+### Language specifics (new folder `20_language_specifics`)
 
 One page per language, covering the same points:
 
@@ -126,7 +147,7 @@ One page per language, covering the same points:
 - [ ] Recursion depth limits (Python's default is 1000) and when to switch to iteration.
 - [ ] Pitfalls: Java `Integer` and `==`; C++ `map[key]` inserting a missing key; Go maps iterating in random order; Rust ownership in graph and tree code; JavaScript's default `sort` comparing as strings.
 
-Pages: `19a_cpp`, `19b_c`, `19c_go`, `19d_java`, `19e_javascript`, `19f_python`, `19g_rust`.
+Pages: `20a_cpp`, `20b_c`, `20c_go`, `20d_java`, `20e_javascript`, `20f_python`, `20g_rust`.
 
 
 ### Data modeling and persistence (new folder `18_data_modeling_and_persistence`)

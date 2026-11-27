@@ -133,6 +133,10 @@ To pick a technique for a new problem, start with [pattern recognition](00_docs/
 - [Changing data and transactions](00_docs/16_sql_databases/16g_modifying_data_and_transactions.md): INSERT/UPDATE/DELETE with RETURNING, upserts, constraints, transactions and savepoints, isolation levels and lost updates.
 - [Triggers](00_docs/16_sql_databases/16h_triggers.md): BEFORE, AFTER and INSTEAD OF, row and statement level, audit logs, derived counters, recursion, and simpler alternatives.
 - [SQL query planning and indexes](00_docs/16_sql_databases/16i_query_planning_and_indexes.md): how a query becomes an execution plan, and how indexes change it.
+- [PL/SQL: blocks, variables and control flow](00_docs/16_sql_databases/16j_plsql_blocks.md): anonymous and named blocks, %TYPE and %ROWTYPE, SELECT INTO, static and dynamic SQL, IF, CASE and loops.
+- [PL/SQL: cursors](00_docs/16_sql_databases/16k_plsql_cursors.md): explicit cursors and attributes, cursor FOR loops, parameters, FOR UPDATE, SYS_REFCURSOR, BULK COLLECT and FORALL.
+- [PL/SQL: procedures, functions, packages and exceptions](00_docs/16_sql_databases/16l_plsql_procedures_and_exceptions.md): parameter modes, functions in SQL, packages and session state, raising and handling exceptions, what an unhandled error rolls back.
+- [PL/SQL: triggers, and loops vs set-based SQL](00_docs/16_sql_databases/16m_plsql_triggers.md): Oracle trigger syntax, logging changes, the mutating table error and compound triggers, and a cursor loop vs one MERGE.
 
 ### Object-oriented design
 
@@ -155,6 +159,15 @@ To pick a technique for a new problem, start with [pattern recognition](00_docs/
 - [Transactions in application code](00_docs/18_data_modeling_and_persistence/18g_transactions_in_code.md): autocommit, transaction boundaries in the service, unit of work, optimistic and pessimistic locking.
 - [JPA and Hibernate](00_docs/18_data_modeling_and_persistence/18h_jpa_and_hibernate.md): entities and ids, owning side and mappedBy, cascade, fetch types, JOIN FETCH, the persistence context, @Version, inheritance.
 - [Schema patterns and anti-patterns](00_docs/18_data_modeling_and_persistence/18i_schema_patterns.md): soft delete, audit columns, enumerations, polymorphic associations, EAV, and migrations.
+
+### Document databases
+
+- [Documents and queries](00_docs/19_document_databases/19a_documents_and_queries.md): BSON and _id, find and update operators, $elemMatch, single-document atomicity, the aggregation pipeline and $lookup.
+- [Embedding vs referencing](00_docs/19_document_databases/19b_embedding_vs_referencing.md): the questions that decide, each cardinality from 1:1 to 1:squillions and N:M, copies of embedded data, and a design method.
+- [Relationship patterns](00_docs/19_document_databases/19c_relationship_patterns.md): extended reference, subset, outlier, computed and bucket.
+- [Structure patterns](00_docs/19_document_databases/19d_structure_patterns.md): polymorphic, attribute, four ways to store trees, and schema versioning.
+- [Sizing and cost estimation](00_docs/19_document_databases/19e_sizing_and_cost.md): aggregate notation, document length and pages, documents and pages read per query, and a worked exam exercise.
+- [Indexes, validation and transactions](00_docs/19_document_databases/19f_indexes_validation_transactions.md): explain, compound and multikey indexes, partial unique indexes, $jsonSchema, multi-document transactions and write conflicts.
 
 ### Other problem sets
 
