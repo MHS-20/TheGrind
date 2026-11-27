@@ -159,7 +159,7 @@ db.categories.updateMany({ $or: [{ _id: "Pasta" }, { ancestors: "Pasta" }] }, [
 { modified: 2, fresh: [ 'Menu', 'Drinks', 'Pasta' ] }
 ```
 
-The course recommends this layout for working with subtrees.
+It is the usual choice when the application mostly works with subtrees.
 
 ### Materialized path
 

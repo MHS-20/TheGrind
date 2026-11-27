@@ -2,7 +2,7 @@
 
 The design method ([embedding vs referencing](19b_embedding_vs_referencing.md#a-method)) ends with an output: the collections, their sizes, and what the frequent queries cost. These are estimates made on paper, before any data exists, from the volume table and the operations. They are what makes two candidate designs comparable: "embedding the tables makes the restaurant page one page read instead of nineteen" is an argument; "embedding feels right" is not.
 
-This page gives the notation and formulas used for that, applies them to the restaurant schema, and works through an exercise in the style of the course's exams.
+This page gives the notation and formulas used for that, applies them to the restaurant schema, and works through a second, complete exercise.
 
 ## Notation
 
@@ -54,7 +54,7 @@ The cost of an operation is counted in documents and pages touched:
 - **ED**: estimated documents read (or written).
 - **EP**: estimated pages read (or written).
 
-When documents are reached by key through an index, each one is assumed to be on a different page, so EP = ED. A collection scan reads every page instead: EP = NP. The access to the index itself is left out, as in the course's solutions; the point is to compare designs, and both designs pay it.
+When documents are reached by key through an index, each one is assumed to be on a different page, so EP = ED. A collection scan reads every page instead: EP = NP. The access to the index itself is left out: the point is to compare designs, and both designs pay it.
 
 ## The restaurant schema
 
@@ -123,9 +123,9 @@ Weighted by frequency (200,000 restaurant pages, 10,000 bookings lists, 2,000 re
 
 Design A uses more space and makes rare writes more expensive, and in exchange reads about 8.5 times fewer pages on this workload. That is the usual shape of the trade in document design, and the numbers say how large it is for this particular workload. With a different one (phones changing constantly, restaurant pages rarely viewed), the same calculation could favour design B.
 
-## An exam-style exercise
+## A worked exercise
 
-The course's self-assessment uses a car-repair database. The volume table:
+A car-repair database, with this volume table:
 
 | Collection | ND | len |
 |---|---|---|
@@ -165,7 +165,7 @@ ED = 1 + 4 = 5        EP = 5
 ED = 2        EP = 2
 ```
 
-These match the official solution. Query (b) shows the cost of embedding Cliente: a customer update touches every car document that copied it.
+Query (b) shows the cost of embedding Cliente: a customer update touches every car document that copied it.
 
 The collection `S.Auto` (cars with their customer embedded) can be built from referenced collections with an aggregation that writes its result:
 

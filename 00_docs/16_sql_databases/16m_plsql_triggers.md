@@ -1,6 +1,6 @@
 # PL/SQL: Triggers, and Loops vs Set-Based SQL
 
-A trigger is a block that the database runs automatically when a table is changed. [Triggers](16h_triggers.md) covers the idea and its uses on PostgreSQL; this page covers Oracle's syntax and the error that most Oracle trigger code runs into, the mutating table. It ends with the question the course asks about every PL/SQL solution: should this be a loop at all, or one SQL statement?
+A trigger is a block that the database runs automatically when a table is changed. [Triggers](16h_triggers.md) covers the idea and its uses on PostgreSQL; this page covers Oracle's syntax and the error that most Oracle trigger code runs into, the mutating table. It ends with the question to ask of every PL/SQL solution: should this be a loop at all, or one SQL statement?
 
 The examples run on Oracle Database Free (23.26), on the restaurant schema.
 
@@ -64,7 +64,7 @@ The error fails the `INSERT` statement, and the row is not written.
 
 ## `AFTER` row triggers: logging changes
 
-The course's lab logs every price change. An `AFTER UPDATE` trigger writes the old and new price to a log table, with a `WHEN` clause so that updates that do not change the price are skipped:
+Logging every price change: an `AFTER UPDATE` trigger writes the old and new price to a log table, with a `WHEN` clause so that updates that do not change the price are skipped:
 
 ```sql
 CREATE TABLE price_log (
@@ -193,7 +193,7 @@ The check has a race the trigger cannot see. Two sessions each insert a booking 
 
 ## A cursor loop vs one statement
 
-The course's lab asks the same question of each exercise: is the PL/SQL solution the right one, or can one SQL statement do it? Three ways to write a monthly loyalty award: every customer with at least three confirmed bookings in the month gets 10 points per guest of those bookings.
+Is a PL/SQL loop the right solution, or can one SQL statement do it? Three ways to write a monthly loyalty award: every customer with at least three confirmed bookings in the month gets 10 points per guest of those bookings.
 
 **From the application**, over JDBC: read the customers, then for each customer run a count query, then read their bookings and send an update per booking. The cost is round trips: one per customer for the count, one per customer for the bookings, one per booking for the update, and every row crosses the network.
 
@@ -256,7 +256,7 @@ All three gave the same result (6,444,430 points in total). The loop is about 8 
 How to choose:
 
 - **Write it as one statement when the logic is a query**: filter, group, join, compute, write. `MERGE`, `INSERT ... SELECT`, `UPDATE` with subqueries, and window functions ([16e](16e_window_functions.md)) cover a lot.
-- **Use PL/SQL when the logic is really step by step**: each step depends on the previous one (assigning tables one booking at a time, each assignment changing what is free for the next), per-row error handling, calling other procedures per row, or limits like "stop after the first N" that depend on running state, as in the course's elected-candidates exercise.
+- **Use PL/SQL when the logic is really step by step**: each step depends on the previous one (assigning tables one booking at a time, each assignment changing what is free for the next), per-row error handling, calling other procedures per row, or limits like "stop after the first N" that depend on running state (the first N candidates of each party, where N depends on the party's votes).
 - **When it must be a loop, make it a bulk loop** ([bulk collect and forall](16k_plsql_cursors.md#bulk-collect-and-forall)).
 
 ## Common mistakes

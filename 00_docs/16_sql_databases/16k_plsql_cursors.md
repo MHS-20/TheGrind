@@ -135,7 +135,7 @@ END;
 done
 ```
 
-A loop over an empty result simply runs zero times. Parameter types are written without a size (`NUMBER`, not `NUMBER(10)`). The common use is an outer loop over parents and an inner parameterized cursor over each parent's children, as in the course's exercises.
+A loop over an empty result simply runs zero times. Parameter types are written without a size (`NUMBER`, not `NUMBER(10)`). The common use is an outer loop over parents and an inner parameterized cursor over each parent's children.
 
 ## Updating the row being read
 

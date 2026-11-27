@@ -218,7 +218,7 @@ The cost is larger gaps: if the application restarts, the unused part of its blo
 | Identity column | the default for a single database |
 | Sequence with an increment | an ORM inserts in batches (hi-lo style) |
 | UUID (v7 if possible) | ids are created outside the database, or must not be guessable |
-| Key table | the database has no sequences, or an exam asks for an IdBroker |
+| Key table | the database has no sequences |
 
 ## Reading the generated id in Java
 

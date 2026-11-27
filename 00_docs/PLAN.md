@@ -122,7 +122,7 @@ Oracle's procedural language, run on Oracle Database Free in Docker. Examples us
 - [x] `16k_plsql_cursors`: implicit and explicit cursors, cursor `FOR` loops, parameters, `BULK COLLECT` and `FORALL`.
 - [x] `16l_plsql_procedures_and_exceptions`: procedures, functions, packages, predefined and user-defined exceptions, `RAISE_APPLICATION_ERROR`.
 - [x] `16m_plsql_triggers`: row and statement triggers, `:NEW` and `:OLD`, the mutating-table error, and a cursor loop vs one set-based statement.
-- [ ] Practice in `19_sql`: the course exercises (hospital stay fee, operator rating, elected candidates).
+- [x] Practice in `19_sql/plsql`: 15 problems with schema, example data and solution.
 
 ### Document databases (new folder `19_document_databases`)
 

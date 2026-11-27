@@ -130,7 +130,15 @@ for topic in sorted(p for p in ROOT.iterdir() if p.is_dir() and re.match(r"(0[1-
 copy_md("19_sql/README.md")
 nav.append("* SQL problems")
 nav.append("    * [Overview](19_sql/README.md)")
-for problem in sorted((p for p in (ROOT / "19_sql").iterdir() if p.is_dir()), key=lambda p: leading_number(p.name)):
+for problem in sorted((p for p in (ROOT / "19_sql").iterdir() if p.is_dir() and p.name != "plsql"),
+                      key=lambda p: leading_number(p.name)):
+    nav.append(f"    * [{title_of(problem / 'README.md')}]({problem_page(problem, problem.name)})")
+
+# PL/SQL problems
+copy_md("19_sql/plsql/README.md")
+nav.append("* PL/SQL problems")
+nav.append("    * [Overview](19_sql/plsql/README.md)")
+for problem in sorted(p for p in (ROOT / "19_sql" / "plsql").iterdir() if p.is_dir()):
     nav.append(f"    * [{title_of(problem / 'README.md')}]({problem_page(problem, problem.name)})")
 
 # practical exercises

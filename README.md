@@ -172,6 +172,7 @@ To pick a technique for a new problem, start with [pattern recognition](00_docs/
 ### Other problem sets
 
 - [SQL problems](19_sql/): LeetCode database problems solved in PostgreSQL, each linked to its lesson.
+- [PL/SQL problems](19_sql/plsql/): procedures and functions on Oracle, with schema, example data and expected output.
 - [Practical coding problems](20_practical/): staged specs for non-algorithmic interviews, with solutions and tests per stage. Business logic in Python, storage in Java.
 - [Low-level design problems](21_lld/): object-oriented design problems in Java, with staged requirements and checks per stage.
 - [HackerRank problems](hackerrank/): three HackerRank problems, each with the nearest LeetCode problem.

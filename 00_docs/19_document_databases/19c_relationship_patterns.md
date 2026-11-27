@@ -144,7 +144,7 @@ Storing the sum and the count, rather than the average, keeps the update a plain
 - **Costs**: the derived value can drift if some write path forgets to update it ([the stored counter that drifted](../18_data_modeling_and_persistence/18c_normalization.md#denormalizing-on-purpose)). Deleting a review must decrement both fields.
 - **Guidelines**: use it when reads far outnumber writes. When exactness is not required, the value can also be recomputed periodically by a batch job instead of on every write.
 
-The relational version is the same idea: a derived column (`trans_count`, `sum_temperature` in the course's sensor example) kept by a trigger or by the writing code.
+The relational version is the same idea: a derived column (`trans_count`, `sum_temperature`) kept by a trigger or by the writing code.
 
 ## Bucket pattern
 

@@ -18,3 +18,7 @@ Every solution was run on PostgreSQL 17 with the example data from the problem. 
 | [196. Delete Duplicate Emails](196_delete_duplicate_emails/) | `DELETE … USING` self-join | [changing data](../00_docs/16_sql_databases/16g_modifying_data_and_transactions.md) |
 | [197. Rising Temperature](197_rising_temperature/) | self-join on date minus one day | [joins](../00_docs/16_sql_databases/16b_joins.md) |
 | [262. Trips and Users](262_trips_and_users/) | joins as filters, average of a 1/0 flag | [grouping](../00_docs/16_sql_databases/16c_grouping.md) |
+
+## PL/SQL
+
+[plsql/](plsql/) has 15 problems solved with Oracle PL/SQL procedures and functions, each with its own schema and example data (or the shared Northwind data), run on Oracle Database Free.

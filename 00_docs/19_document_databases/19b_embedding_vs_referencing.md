@@ -150,7 +150,7 @@ Trattoria still lists Bob as a fan. Updating both sides needs a transaction, or 
 
 Choose two-way only when both directions are frequent queries, and when one side's array stays small: a restaurant with 50,000 fans cannot hold them all in an array. Then keep the array on the "few" side only (customers) and find fans with an index on `favourites`, which MongoDB builds as a **multikey index** over array elements.
 
-When the link has attributes (when Ada marked it, a note), the array holds sub-documents (`favourites: [ { id: "trattoria", since: ISODate(...) } ]`), the way the purchase date sits in the link in the course's books-and-students example. With two-way references, the attribute is usually stored on one side only.
+When the link has attributes (when Ada marked it, a note), the array holds sub-documents (`favourites: [ { id: "trattoria", since: ISODate(...) } ]`). With two-way references, the attribute is usually stored on one side only.
 
 ### Few:few
 
@@ -172,7 +172,7 @@ Two documents here; potentially millions in production, and not atomic together 
 
 ## A method
 
-There is no normalization algorithm for documents. The course method is iterative, in three steps.
+There is no normalization algorithm for documents. A workable method is iterative, in three steps.
 
 **1. Conceptual model.** An ER diagram, with the real cardinalities of each relationship (1:few or 1:squillions, not just 1:N).
 
