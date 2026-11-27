@@ -17,10 +17,6 @@ An expense-sharing system: users add expenses paid by one person for a group, an
 - `BalanceSheet`: net amount per pair of users (or per user within a group).
 - `Payment`: record of from, to, amount.
 
-## Class diagram
-
-See [diagram.md](diagram.md).
-
 ## Patterns used
 
 - **Strategy** for splits (stage 2): the main point of the problem. See [behavioral patterns](../../00_docs/17_object_oriented_design/17f_behavioral_patterns.md#strategy).
@@ -32,13 +28,3 @@ See [diagram.md](diagram.md).
 - **Money in `long` cents.** `double` cannot represent 0.10 exactly; splits of 1000 among 3 must give 334, 333, 333 and sum back to 1000.
 - **Net balances per user** (`+` is owed, `-` owes) make settling simple: the sum over a group is always 0, which is the invariant to check.
 - **Minimum number of payments is NP-hard** in general; the greedy largest-debtor-to-largest-creditor gives at most n−1 payments. Say this rather than claim it is optimal.
-
-## Compared with other solutions
-
-<Fill in after solving.>
-
-## Files
-
-`ExpenseService.java`: the solution, with checks for each stage in `main`.
-
-`diagram.md`: the class diagram (Mermaid).

@@ -18,10 +18,6 @@ A library that lends copies of books to members and tracks returns, reservations
 - `MembershipPolicy` (stage 3): max loans, loan days, fine per day.
 - `Notifier`: interface for "your reservation is ready".
 
-## Class diagram
-
-See [diagram.md](diagram.md).
-
 ## Patterns used
 
 - **Strategy** for membership rules (stage 3).
@@ -33,13 +29,3 @@ See [diagram.md](diagram.md).
 - **Book vs copy** is the key modelling point: the catalogue is about books, loans are about copies. Mixing them breaks as soon as there are two copies.
 - **Dates are parameters**, so fines are testable.
 - **Fine computation lives in the policy**, not in `Loan`, so faculty's "no fines" is data, not an `if`.
-
-## Compared with other solutions
-
-<Fill in after solving.>
-
-## Files
-
-`Library.java`: the solution, with checks for each stage in `main`.
-
-`diagram.md`: the class diagram (Mermaid).

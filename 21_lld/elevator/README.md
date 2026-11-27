@@ -16,10 +16,6 @@ A building with elevator cars that serve requests from floor buttons and from bu
 - `Dispatcher`: interface choosing a car for a floor request (stage 2).
 - `Direction`: UP, DOWN, IDLE.
 
-## Class diagram
-
-See [diagram.md](diagram.md).
-
 ## Patterns used
 
 - **Strategy** for the dispatcher (stage 2).
@@ -32,13 +28,3 @@ See [diagram.md](diagram.md).
 - **Two sorted sets per car** (stops above and below) make SCAN simple: going up, the next stop is `up.ceiling(floor)`; when it is empty, reverse.
 - **Simulated time** (`step()`) instead of real threads per car makes stages 1 and 2 testable without sleeps.
 - **Stage 3 locking**: one lock per car protects its stops and floor; the dispatcher reads a car's snapshot under that lock. Assigning a request takes the system lock briefly so two threads cannot assign the same floor call twice. `state()` returns immutable snapshots.
-
-## Compared with other solutions
-
-<Fill in after solving.>
-
-## Files
-
-`ElevatorSystem.java`: the solution, with checks for each stage in `main`.
-
-`diagram.md`: the class diagram (Mermaid).

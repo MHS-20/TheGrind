@@ -18,10 +18,6 @@ Self-service lockers where a courier drops a package and the customer picks it u
 - `CodeGenerator`, `Clock`: injected, so tests control codes and time.
 - `LocationSelector` (stage 2): chooses a location for an address.
 
-## Class diagram
-
-See [diagram.md](diagram.md).
-
 ## Patterns used
 
 - **Strategy** for choosing the location (stage 2).
@@ -34,13 +30,3 @@ See [diagram.md](diagram.md).
 - **Codes are unguessable and unique among live codes**: generate random 6 digits and retry on collision. The generator is injected so tests are deterministic.
 - **Expiry is checked lazily on pickup and by an `expire(now)` sweep**, instead of a timer thread per package.
 - **Atomic claim**: a slot goes free → reserved with a compare-and-set (or under the location's lock); a code is consumed with `remove` from a `ConcurrentHashMap`, so only one pickup succeeds.
-
-## Compared with other solutions
-
-<Fill in after solving.>
-
-## Files
-
-`LockerService.java`: the solution, with checks for each stage in `main`.
-
-`diagram.md`: the class diagram (Mermaid).

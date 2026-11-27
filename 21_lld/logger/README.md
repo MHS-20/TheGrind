@@ -17,10 +17,6 @@ A small logging library: application code logs messages at a level, and the fram
 - `Formatter`: interface `format(record)`; `PlainFormatter`, `JsonFormatter`.
 - `Level`: enum with ordering.
 
-## Class diagram
-
-See [diagram.md](diagram.md).
-
 ## Patterns used
 
 - **Chain of responsibility**: a record goes up the logger hierarchy (stage 2), and level checks filter it at each step.
@@ -34,13 +30,3 @@ See [diagram.md](diagram.md).
 - **Cheap when disabled**: check the level before building the message (`isDebugEnabled`, or a `Supplier<String>`).
 - **No interleaving**: each appender writes a whole line under its own lock; formatting happens outside the lock.
 - **Shutdown flushes**: a poison-pill record tells the background thread to drain and stop.
-
-## Compared with other solutions
-
-<Fill in after solving.>
-
-## Files
-
-`Logging.java`: the solution, with checks for each stage in `main`.
-
-`diagram.md`: the class diagram (Mermaid).

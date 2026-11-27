@@ -16,10 +16,6 @@ A game of tic-tac-toe between two players, generalised to bigger boards.
 - `Move`: record of player, row, col.
 - `GameStatus`: IN_PROGRESS, WON(player), DRAW.
 
-## Class diagram
-
-See [diagram.md](diagram.md).
-
 ## Patterns used
 
 - **Command** for moves, so undo pops the history (stage 3).
@@ -30,13 +26,3 @@ See [diagram.md](diagram.md).
 
 - **Win check from the last move only**: count consecutive symbols in 4 directions through the placed cell; O(k) per move instead of O(n²). The LeetCode version (348, Design Tic-Tac-Toe) keeps row/column/diagonal counters for O(1), which works only for k = n.
 - **The turn advances in `Game`, not in `Board`**: the board knows cells, the game knows rules.
-
-## Compared with other solutions
-
-<Fill in after solving.>
-
-## Files
-
-`TicTacToe.java`: the solution, with checks for each stage in `main`.
-
-`diagram.md`: the class diagram (Mermaid).

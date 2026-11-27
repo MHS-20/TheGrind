@@ -17,10 +17,6 @@ A two-player chess game that validates moves and detects the end of the game.
 - `Move`: from, to, the piece, the captured piece, and flags (castling, promotion), so it can be undone.
 - `Square`: record of file and rank.
 
-## Class diagram
-
-See [diagram.md](diagram.md).
-
 ## Patterns used
 
 - **Polymorphism over piece types**: each piece knows its own movement; the game asks, it does not `switch`.
@@ -33,13 +29,3 @@ See [diagram.md](diagram.md).
 - **Pseudo-legal then legal**: pieces generate moves ignoring check; the game filters out moves that leave the king attacked by applying, testing, and reverting each. Simple and correct; fast enough for an interview.
 - **Undo is easier than copying the board** once `Move` records the captured piece and flags.
 - **Scope**: say en passant, threefold repetition and the 50-move rule are out unless asked.
-
-## Compared with other solutions
-
-<Fill in after solving.>
-
-## Files
-
-`Chess.java`: the solution, with checks for each stage in `main`.
-
-`diagram.md`: the class diagram (Mermaid).

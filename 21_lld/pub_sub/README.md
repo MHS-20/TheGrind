@@ -17,10 +17,6 @@ An in-process message broker: publishers send messages to topics, and every subs
 - `Subscription`: subscriber, topic, filter, current offset, and (stage 3) its worker.
 - `Filter`: predicate on a message.
 
-## Class diagram
-
-See [diagram.md](diagram.md).
-
 ## Patterns used
 
 - **Observer**, with a broker in between: publishers and subscribers do not know each other. See [behavioral patterns](../../00_docs/17_object_oriented_design/17f_behavioral_patterns.md#observer).
@@ -32,13 +28,3 @@ See [diagram.md](diagram.md).
 - **A log with per-subscriber offsets** (like Kafka) instead of pushing copies into per-subscriber queues: replay is free, and ordering per subscriber is the order of the log.
 - **Publishing appends under the topic's lock** (that fixes the order); delivery happens outside it, so publishers never wait for subscribers.
 - **One worker per subscription** reads from its offset and waits on a condition when caught up; a slow or failing subscriber affects only its own worker.
-
-## Compared with other solutions
-
-<Fill in after solving.>
-
-## Files
-
-`PubSub.java`: the solution, with checks for each stage in `main`.
-
-`diagram.md`: the class diagram (Mermaid).

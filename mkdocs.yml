@@ -32,8 +32,8 @@ extra_css:
   - extra.css
 
 extra_javascript:
-  - path: mermaid-init.js
-    type: module
+  - https://cdn.jsdelivr.net/npm/mermaid@11.4.1/dist/mermaid.min.js
+  - mermaid-init.js
 
 exclude_docs: |
   gen_pages.py

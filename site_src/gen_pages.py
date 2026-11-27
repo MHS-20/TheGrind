@@ -153,14 +153,26 @@ for group in sorted(p for p in (ROOT / "20_practical").iterdir() if p.is_dir()):
     for ex in sorted(p for p in group.iterdir() if p.is_dir()):
         nav.append(f"        * [{title_of(ex / 'README.md')}]({problem_page(ex, ex.name)})")
 
-# LLD problems: a folder appears in the nav once it has a README
+# LLD problems: one folder per problem with the statement, the class diagram and the solution
 nav.append("* LLD")
 copy_md("21_lld/README.md")
 nav.append("    * [Overview](21_lld/README.md)")
 for problem in sorted(p for p in (ROOT / "21_lld").iterdir() if (p / "README.md").exists()):
-    nav.append(f"    * [{title_of(problem / 'README.md')}]({problem_page(problem, problem.name)})")
+    rel = problem.relative_to(ROOT)
+    nav.append(f"    * {title_of(problem / 'README.md')}")
+    copy_md(f"{rel}/README.md")
+    nav.append(f"        * [Problem]({rel}/README.md)")
     if (problem / "diagram.md").exists():
-        copy_md(str((problem / "diagram.md").relative_to(ROOT)))
+        copy_md(f"{rel}/diagram.md")
+        nav.append(f"        * [Class diagram]({rel}/diagram.md)")
+    code = sorted(f for f in problem.iterdir() if f.suffix in CODE_EXT)
+    if code:
+        text = "# Solution\n\n" + "".join(
+            (f"`{f.name}`\n\n" if len(code) > 1 else "")
+            + fenced(f.read_text().rstrip("\n"), LANGS[f.suffix[1:]][1], "") + "\n"
+            for f in code)
+        write(f"{rel}/solution.md", text)
+        nav.append(f"        * [Solution]({rel}/solution.md)")
 
 # HackerRank
 nav.append("* HackerRank")

@@ -17,10 +17,6 @@ The board game: players roll a die and move along a board of cells with snakes a
 - `Player`: id, name.
 - `GameService` (stage 3).
 
-## Class diagram
-
-See [diagram.md](diagram.md).
-
 ## Patterns used
 
 - **Strategy** for dice and turn rules.
@@ -32,13 +28,3 @@ See [diagram.md](diagram.md).
 - **Inject the randomness.** A game with `new Random()` inside cannot be tested.
 - **Validate the board once at creation** so the turn loop never meets an invalid jump.
 - **Games share nothing mutable** (stage 3), so a lock per game is enough; the service's map of games is a `ConcurrentHashMap`.
-
-## Compared with other solutions
-
-<Fill in after solving.>
-
-## Files
-
-`SnakeAndLadder.java`: the solution, with checks for each stage in `main`.
-
-`diagram.md`: the class diagram (Mermaid).

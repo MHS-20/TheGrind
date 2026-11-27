@@ -16,10 +16,6 @@ A machine that sells products from slots, accepts coins, and returns change.
 - `CoinBox`: count per denomination; `makeChange(amount)` returns the coins or nothing.
 - `Sale`: record of the product and the change returned.
 
-## Class diagram
-
-See [diagram.md](diagram.md).
-
 ## Patterns used
 
 - **State** (stage 2): one class per state, default methods reject everything. See [behavioral patterns](../../00_docs/17_object_oriented_design/17f_behavioral_patterns.md#state).
@@ -30,13 +26,3 @@ See [diagram.md](diagram.md).
 - **Credit is kept on failure.** A failed select must not consume coins; the state does not change.
 - **Greedy change is not always possible with a limited coin stock** (owing 30 with one 25 and three 10s: greedy takes 25 and is stuck, three 10s work). With these four coin values a small search over counts is enough; say so instead of assuming greedy.
 - **Enum vs classes.** Four states with little data each could be an enum with overridden methods. Classes are used to show the pattern; the table above is the real spec either way.
-
-## Compared with other solutions
-
-<Fill in after solving.>
-
-## Files
-
-`VendingMachine.java`: the solution, with checks for each stage in `main`.
-
-`diagram.md`: the class diagram (Mermaid).

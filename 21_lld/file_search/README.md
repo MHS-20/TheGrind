@@ -15,10 +15,6 @@ An API like the Unix `find` command: search a directory tree for files that matc
 - `SizeFilter`, `ExtensionFilter`, `NameFilter`; `And`, `Or`, `Not` (stage 2).
 - `FileSearch`: walks the tree and applies a filter.
 
-## Class diagram
-
-See [diagram.md](diagram.md).
-
 ## Patterns used
 
 - **Composite** twice: the file tree, and the filter tree (`And` holds filters and is a filter). See [structural patterns](../../00_docs/17_object_oriented_design/17e_structural_patterns.md#composite).
@@ -31,13 +27,3 @@ See [diagram.md](diagram.md).
 - **Filters are pure functions of a file**, so they combine freely and can be tested alone.
 - **Iterative DFS with an explicit stack** (stage 3) avoids recursion depth limits; stopping after k results is a check in the loop.
 - **Builder or small factory methods** (`Filter.size(gt(5_000_000)).and(ext("xml"))`) make combined filters readable; optional.
-
-## Compared with other solutions
-
-<Fill in after solving.>
-
-## Files
-
-`FileSearch.java`: the solution, with checks for each stage in `main`.
-
-`diagram.md`: the class diagram (Mermaid).

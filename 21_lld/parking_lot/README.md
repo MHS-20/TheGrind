@@ -18,10 +18,6 @@ A multi-floor parking lot that assigns spots to vehicles at entry and charges a 
 - `PricingStrategy`: computes the fee for a ticket and an exit time.
 - `SpotSelector` (stage 2): orders the candidate spots for a vehicle.
 
-## Class diagram
-
-See [diagram.md](diagram.md).
-
 ## Patterns used
 
 - **Strategy** for pricing (stage 1, pays off in stage 2): weekend pricing is a new class. See [behavioral patterns](../../00_docs/17_object_oriented_design/17f_behavioral_patterns.md#strategy).
@@ -34,13 +30,3 @@ See [diagram.md](diagram.md).
 - **The spot decides whether a vehicle fits** (tell, don't ask). A `switch` on vehicle type inside `ParkingLot` would be edited for every new type.
 - **Lock granularity (stage 3).** A lock per floor lets gates on different floors work in parallel, but finding "the lowest floor with a free spot" then scans floors one by one and must claim the spot atomically (`compareAndSet` on the spot's occupant, or `synchronized` on the floor while choosing). One lock on the whole lot is simpler and is the first answer; per-floor locking is the follow-up.
 - **Paying a ticket once**: remove it from a `ConcurrentHashMap` with `remove(id)`; only the thread that gets a non-null result frees the spot.
-
-## Compared with other solutions
-
-<Fill in after solving: differences from the awesome-low-level-design version.>
-
-## Files
-
-`ParkingLot.java`: the solution, with checks for each stage in `main`.
-
-`diagram.md`: the class diagram (Mermaid).

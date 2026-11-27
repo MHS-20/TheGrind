@@ -1,4 +1,4 @@
-import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11.4.1/dist/mermaid.esm.min.mjs";
-
+// Loaded after mermaid.min.js; the theme emits plain deferred scripts, so no ES modules here.
 const dark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-mermaid.initialize({ startOnLoad: true, theme: dark ? "dark" : "default" });
+mermaid.initialize({ startOnLoad: false, theme: dark ? "dark" : "default" });
+mermaid.run({ querySelector: ".mermaid" });

@@ -17,10 +17,6 @@ A cash machine that authenticates a card, shows a balance, and dispenses cash fr
 - `CashDispenser`: chain of note handlers over the note inventory.
 - `Card`: record of number; the bank tracks failed attempts and blocks.
 
-## Class diagram
-
-See [diagram.md](diagram.md).
-
 ## Patterns used
 
 - **State** for the session (stage 1).
@@ -32,13 +28,3 @@ See [diagram.md](diagram.md).
 - **Plan, then debit, then dispense.** Compute the notes first without removing them; debit the bank; then take the notes. If the plan is impossible, nothing was debited. This ordering makes stage 3's reversal rare.
 - **Compensation instead of a transaction**: the ATM and the bank are separate systems, so a failed dispense calls `reverse(txId)`. The transaction id makes the reversal idempotent.
 - **Per-account lock** in the bank: `debit` checks and subtracts under the account's lock, so two ATMs cannot both see enough money.
-
-## Compared with other solutions
-
-<Fill in after solving.>
-
-## Files
-
-`Atm.java`: the solution, with checks for each stage in `main`.
-
-`diagram.md`: the class diagram (Mermaid).
