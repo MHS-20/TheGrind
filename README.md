@@ -115,27 +115,46 @@ To pick a technique for a new problem, start with [pattern recognition](00_docs/
 - [Integer formulas](00_docs/14_math_and_geometry/14b_integer_formulas.md): splitting a count in halves, ceiling division, an overflow-free midpoint, flattening a grid index, counting formulas, and the k-largest heap rule.
 - [Number theory](00_docs/14_math_and_geometry/14c_number_theory.md): Euclid's GCD and why it works, LCM without overflow, modular arithmetic and the modular inverse, fast exponentiation, and primes.
 
+### Strings
+
+- [String basics](00_docs/15_strings/15a_string_basics.md): what building a string costs in each language, comparing characters, counting with fixed arrays. (draft)
+- [Pattern matching](00_docs/15_strings/15b_pattern_matching.md): naive search, the KMP prefix function, the Z-function. (draft)
+- [Rolling hash](00_docs/15_strings/15c_rolling_hash.md): Rabin-Karp, base and modulus, collisions, double hashing. (draft)
+- [Palindromes](00_docs/15_strings/15d_palindromes.md): expanding from the centre, and Manacher in O(n). (draft)
+
 ### Databases
 
-- [SQL basics](00_docs/15_sql_databases/15a_basics.md): the example schema, filtering and sorting, undefined order on ties, NULL and three-valued logic, and the order clauses are evaluated in.
-- [Joins](00_docs/15_sql_databases/15b_joins.md): inner, outer and self-joins, conditions in ON vs WHERE, anti-joins and the NOT IN trap, and joins that inflate totals.
-- [Grouping and aggregates](00_docs/15_sql_databases/15c_grouping.md): GROUP BY, aggregates and NULL, count(*) after a left join, WHERE vs HAVING, and FILTER.
-- [Subqueries, CTEs and set operations](00_docs/15_sql_databases/15d_subqueries_and_ctes.md): scalar and correlated subqueries, EXISTS, derived tables, CTE inlining, recursive CTEs, and UNION/EXCEPT.
-- [Window functions](00_docs/15_sql_databases/15e_window_functions.md): aggregates next to each row, ranking and top N per group, running totals, lag and lead, and frames.
-- [Views and virtual tables](00_docs/15_sql_databases/15f_views_and_virtual_tables.md): views, updatable views and CHECK OPTION, materialized views, temporary tables, VALUES, generate_series and LATERAL.
-- [Changing data and transactions](00_docs/15_sql_databases/15g_modifying_data_and_transactions.md): INSERT/UPDATE/DELETE with RETURNING, upserts, constraints, transactions and savepoints, isolation levels and lost updates.
-- [Triggers](00_docs/15_sql_databases/15h_triggers.md): BEFORE, AFTER and INSTEAD OF, row and statement level, audit logs, derived counters, recursion, and simpler alternatives.
-- [SQL query planning and indexes](00_docs/15_sql_databases/15i_query_planning_and_indexes.md): how a query becomes an execution plan, and how indexes change it.
+- [SQL basics](00_docs/16_sql_databases/16a_basics.md): the example schema, filtering and sorting, undefined order on ties, NULL and three-valued logic, and the order clauses are evaluated in.
+- [Joins](00_docs/16_sql_databases/16b_joins.md): inner, outer and self-joins, conditions in ON vs WHERE, anti-joins and the NOT IN trap, and joins that inflate totals.
+- [Grouping and aggregates](00_docs/16_sql_databases/16c_grouping.md): GROUP BY, aggregates and NULL, count(*) after a left join, WHERE vs HAVING, and FILTER.
+- [Subqueries, CTEs and set operations](00_docs/16_sql_databases/16d_subqueries_and_ctes.md): scalar and correlated subqueries, EXISTS, derived tables, CTE inlining, recursive CTEs, and UNION/EXCEPT.
+- [Window functions](00_docs/16_sql_databases/16e_window_functions.md): aggregates next to each row, ranking and top N per group, running totals, lag and lead, and frames.
+- [Views and virtual tables](00_docs/16_sql_databases/16f_views_and_virtual_tables.md): views, updatable views and CHECK OPTION, materialized views, temporary tables, VALUES, generate_series and LATERAL.
+- [Changing data and transactions](00_docs/16_sql_databases/16g_modifying_data_and_transactions.md): INSERT/UPDATE/DELETE with RETURNING, upserts, constraints, transactions and savepoints, isolation levels and lost updates.
+- [Triggers](00_docs/16_sql_databases/16h_triggers.md): BEFORE, AFTER and INSTEAD OF, row and statement level, audit logs, derived counters, recursion, and simpler alternatives.
+- [SQL query planning and indexes](00_docs/16_sql_databases/16i_query_planning_and_indexes.md): how a query becomes an execution plan, and how indexes change it.
 
 ### Object-oriented design
 
-- [The LLD round](00_docs/16_object_oriented_design/16a_the_lld_round.md): an order of work for the round, from requirements to entities to code, and how to absorb an extension. (draft)
-- [OOP principles and SOLID](00_docs/16_object_oriented_design/16b_oop_and_solid.md): the four pillars, and each SOLID principle as a violation and its fix. (draft)
-- [Class diagrams](00_docs/16_object_oriented_design/16c_class_diagrams.md): the small part of UML needed in an interview. (draft)
-- [Creational patterns](00_docs/16_object_oriented_design/16d_creational_patterns.md): factory, builder and singleton. (draft)
-- [Structural patterns](00_docs/16_object_oriented_design/16e_structural_patterns.md): decorator, adapter, facade and composite. (draft)
-- [Behavioral patterns](00_docs/16_object_oriented_design/16f_behavioral_patterns.md): strategy, observer, state, command and chain of responsibility. (draft)
-- [Concurrency for LLD](00_docs/16_object_oriented_design/16g_concurrency_basics.md): races, locks and atomics, blocking queues, and testing concurrent code. (draft)
+- [The LLD round](00_docs/17_object_oriented_design/17a_the_lld_round.md): an order of work for the round, from requirements to entities to code, and how to absorb an extension.
+- [OOP principles and SOLID](00_docs/17_object_oriented_design/17b_oop_and_solid.md): the four pillars, and each SOLID principle as a violation and its fix.
+- [Class diagrams](00_docs/17_object_oriented_design/17c_class_diagrams.md): the small part of UML needed in an interview.
+- [Creational patterns](00_docs/17_object_oriented_design/17d_creational_patterns.md): simple factory, factory method, abstract factory, builder, and thread-safe singletons vs injection.
+- [Structural patterns](00_docs/17_object_oriented_design/17e_structural_patterns.md): decorator, adapter, facade, composite and proxy.
+- [Behavioral patterns](00_docs/17_object_oriented_design/17f_behavioral_patterns.md): strategy, observer, state, command, chain of responsibility, template method, iterator, mediator and memento.
+- [Concurrency for LLD](00_docs/17_object_oriented_design/17g_concurrency_basics.md): races, locks and atomics, blocking queues, and testing concurrent code.
+
+### Data modeling and persistence
+
+- [Entities and keys](00_docs/18_data_modeling_and_persistence/18a_entities_and_keys.md): entities to tables, natural vs surrogate keys, identity columns, sequences, UUIDs, key tables and hi-lo, and reading the generated id in JDBC.
+- [Relationships in tables](00_docs/18_data_modeling_and_persistence/18b_relationships.md): 1:1, 1:N and N:N, join tables with attributes, self-references, and what each ON DELETE option does.
+- [Normalization](00_docs/18_data_modeling_and_persistence/18c_normalization.md): update, insert and delete anomalies, functional dependencies, 1NF to BCNF, and denormalizing on purpose.
+- [Mapping objects to tables](00_docs/18_data_modeling_and_persistence/18d_mapping_objects_to_tables.md): foreign keys vs collections, one-way and two-way N:N, association classes, equality, and inheritance mapping.
+- [Data access patterns](00_docs/18_data_modeling_and_persistence/18e_data_access_patterns.md): DTO, DAO and DAO factory, the JDBC method skeleton, the mapping DAO for N:N, Repository, Active Record vs Data Mapper.
+- [Loading related data](00_docs/18_data_modeling_and_persistence/18f_loading_related_data.md): eager vs lazy, lazy loading with a Proxy, the N+1 problem and its fixes, identity map.
+- [Transactions in application code](00_docs/18_data_modeling_and_persistence/18g_transactions_in_code.md): autocommit, transaction boundaries in the service, unit of work, optimistic and pessimistic locking.
+- [JPA and Hibernate](00_docs/18_data_modeling_and_persistence/18h_jpa_and_hibernate.md): entities and ids, owning side and mappedBy, cascade, fetch types, JOIN FETCH, the persistence context, @Version, inheritance.
+- [Schema patterns and anti-patterns](00_docs/18_data_modeling_and_persistence/18i_schema_patterns.md): soft delete, audit columns, enumerations, polymorphic associations, EAV, and migrations.
 
 ### Other problem sets
 

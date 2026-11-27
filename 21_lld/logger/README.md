@@ -34,8 +34,8 @@ LogManager ◆---* Logger(name, level) ---*--> <<interface>> Appender
 - **Chain of responsibility**: a record goes up the logger hierarchy (stage 2), and level checks filter it at each step.
 - **Strategy** for formatters; **Decorator** for `AsyncAppender` wrapping a real appender.
 - **Observer**: appenders subscribe to a logger's records.
-- **Singleton** is the textbook answer for `LogManager`; injecting one instance is the better one. See [creational patterns](../../00_docs/16_object_oriented_design/16d_creational_patterns.md#singleton).
-- **Producer-consumer** for the async appender. See [concurrency](../../00_docs/16_object_oriented_design/16g_concurrency_basics.md#bounded-blocking-queue-and-producer-consumer).
+- **Singleton** is the textbook answer for `LogManager`; injecting one instance is the better one. See [creational patterns](../../00_docs/17_object_oriented_design/17d_creational_patterns.md#singleton).
+- **Producer-consumer** for the async appender. See [concurrency](../../00_docs/17_object_oriented_design/17g_concurrency_basics.md#bounded-blocking-queue-and-producer-consumer).
 
 ## Design notes
 

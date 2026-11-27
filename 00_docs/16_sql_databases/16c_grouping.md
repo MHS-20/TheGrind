@@ -2,7 +2,7 @@
 
 An **aggregate** function turns many rows into one value: a count, a sum, an average, a maximum. `GROUP BY` splits the rows into groups first, and the aggregate then produces one value per group. `HAVING` filters the groups after they are formed, in the same way `WHERE` filters rows before.
 
-The examples use the schema from [basics](15a_basics.md#the-example-schema), and every result shown is PostgreSQL 17's output.
+The examples use the schema from [basics](16a_basics.md#the-example-schema), and every result shown is PostgreSQL 17's output.
 
 ## One row per group
 
@@ -198,4 +198,4 @@ FROM employees GROUP BY 1 ORDER BY 1;
 
 ## Aggregates and window functions
 
-`GROUP BY` collapses each group into one row, so the individual rows are gone. Comparing each employee with their department's average, or numbering rows within a group, needs the rows and the group value side by side. Window functions do that: see [window functions](15e_window_functions.md).
+`GROUP BY` collapses each group into one row, so the individual rows are gone. Comparing each employee with their department's average, or numbering rows within a group, needs the rows and the group value side by side. Window functions do that: see [window functions](16e_window_functions.md).

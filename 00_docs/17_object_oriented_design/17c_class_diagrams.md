@@ -89,7 +89,7 @@ The collection type carries meaning too: `List` when order matters, `Set` when d
 
 ## A full example
 
-The parking lot from [the LLD round](16a_the_lld_round.md):
+The parking lot from [the LLD round](17a_the_lld_round.md):
 
 ```
               +--------------------+      1  +------------------------+

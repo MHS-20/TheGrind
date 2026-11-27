@@ -34,7 +34,7 @@ A two-player chess game that validates moves and detects the end of the game.
 ## Patterns used
 
 - **Polymorphism over piece types**: each piece knows its own movement; the game asks, it does not `switch`.
-- **Command** for moves (stage 3): a move stores what it needs to revert itself. See [behavioral patterns](../../00_docs/16_object_oriented_design/16f_behavioral_patterns.md#command).
+- **Command** for moves (stage 3): a move stores what it needs to revert itself. See [behavioral patterns](../../00_docs/17_object_oriented_design/17f_behavioral_patterns.md#command).
 - **Template method** for sliding pieces: rook, bishop and queen share "walk in these directions until blocked", with only the direction list differing.
 - **Factory** for the starting position.
 

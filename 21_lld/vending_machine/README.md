@@ -47,7 +47,7 @@ A machine that sells products from slots, accepts coins, and returns change.
 
 ## Patterns used
 
-- **State** (stage 2): one class per state, default methods reject everything. See [behavioral patterns](../../00_docs/16_object_oriented_design/16f_behavioral_patterns.md#state).
+- **State** (stage 2): one class per state, default methods reject everything. See [behavioral patterns](../../00_docs/17_object_oriented_design/17f_behavioral_patterns.md#state).
 - **Chain of responsibility** for making change, largest coin first, with a fallback when greedy fails on the available coins.
 
 ## Design notes

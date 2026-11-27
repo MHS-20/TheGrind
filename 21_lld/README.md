@@ -1,6 +1,6 @@
 # Low-Level Design Problems
 
-Object-oriented design problems of the kind asked in LLD or machine-coding rounds: design the classes for a parking lot, an elevator or a booking system, then extend the design when a new requirement arrives. The concepts (SOLID, class diagrams, patterns, concurrency) are in the [object-oriented design lessons](../00_docs/16_object_oriented_design/).
+Object-oriented design problems of the kind asked in LLD or machine-coding rounds: design the classes for a parking lot, an elevator or a booking system, then extend the design when a new requirement arrives. The concepts (SOLID, class diagrams, patterns, concurrency) are in the [object-oriented design lessons](../00_docs/17_object_oriented_design/).
 
 These differ from the [practical problems](../20_practical/), which are judged on a program that stays correct as a spec grows. Here the class model is what is judged, and the tests only check that a later stage does not break an earlier one.
 

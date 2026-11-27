@@ -34,7 +34,7 @@ An API like the Unix `find` command: search a directory tree for files that matc
 
 ## Patterns used
 
-- **Composite** twice: the file tree, and the filter tree (`And` holds filters and is a filter). See [structural patterns](../../00_docs/16_object_oriented_design/16e_structural_patterns.md#composite).
+- **Composite** twice: the file tree, and the filter tree (`And` holds filters and is a filter). See [structural patterns](../../00_docs/17_object_oriented_design/17e_structural_patterns.md#composite).
 - **Strategy**: each filter is a strategy for "does this file match".
 - **Iterator** if results are produced lazily (stage 3), so the caller can stop early.
 

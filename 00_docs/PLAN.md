@@ -101,12 +101,12 @@ Each item gives the page it belongs in: an existing page to extend, or a new pag
 
 ## 2. Topics outside the list
 
-### String algorithms (new folder `16_strings`)
+### String algorithms (new folder `15_strings`)
 
-- [ ] `16a_string_basics`: immutable strings and what building one costs in each language (StringBuilder, `join`, `strings.Builder`); comparing characters; counting with a fixed array of 26 or 128 entries.
-- [ ] `16b_pattern_matching`: naive search; the KMP prefix function; the Z-function.
-- [ ] `16c_rolling_hash`: Rabin-Karp, choosing the base and modulus, collisions, double hashing.
-- [ ] `16d_palindromes`: expanding from the centre (already used in 150), and Manacher in O(n).
+- [ ] `15a_string_basics`: immutable strings and what building one costs in each language (StringBuilder, `join`, `strings.Builder`); comparing characters; counting with a fixed array of 26 or 128 entries.
+- [ ] `15b_pattern_matching`: naive search; the KMP prefix function; the Z-function.
+- [ ] `15c_rolling_hash`: Rabin-Karp, choosing the base and modulus, collisions, double hashing.
+- [ ] `15d_palindromes`: expanding from the centre (already used in 150), and Manacher in O(n).
 
 ### Segment trees and Fenwick trees (`02_data_structures`, new pages)
 
@@ -114,7 +114,7 @@ Each item gives the page it belongs in: an existing page to extend, or a new pag
 - [ ] `2l_segment_trees`: range queries with point updates, lazy propagation, and when a Fenwick tree is enough.
 - [ ] Practice problems: Range Sum Query Mutable (307), Count of Smaller Numbers After Self (315), My Calendar (729/731).
 
-### Language specifics (new folder `17_language_specifics`)
+### Language specifics (new folder `19_language_specifics`)
 
 One page per language, covering the same points:
 
@@ -126,7 +126,22 @@ One page per language, covering the same points:
 - [ ] Recursion depth limits (Python's default is 1000) and when to switch to iteration.
 - [ ] Pitfalls: Java `Integer` and `==`; C++ `map[key]` inserting a missing key; Go maps iterating in random order; Rust ownership in graph and tree code; JavaScript's default `sort` comparing as strings.
 
-Pages: `17a_cpp`, `17b_c`, `17c_go`, `17d_java`, `17e_javascript`, `17f_python`, `17g_rust`.
+Pages: `19a_cpp`, `19b_c`, `19c_go`, `19d_java`, `19e_javascript`, `19f_python`, `19g_rust`.
+
+
+### Data modeling and persistence (new folder `18_data_modeling_and_persistence`)
+
+Designing relational schemas and the Java code that reads and writes them. It sits between `16_sql_databases` (querying) and `17_object_oriented_design` (classes and patterns). One running domain on every page: a restaurant booking system (restaurants, tables, customers, loyalty cards, bookings, menu categories and items, orders, staff). SQL is run on PostgreSQL 17 with real output; Java uses plain JDBC except in `18h`.
+
+- [x] `18a_entities_and_keys`: entities to tables; natural vs surrogate keys; generating ids (identity, sequence, UUID, a key table, hi-lo); reading the generated id back after an insert.
+- [x] `18b_relationships`: 1:1 (shared primary key vs unique foreign key), 1:N, N:N with a join table, a join table with its own attributes, self-references, `ON DELETE` options.
+- [x] `18c_normalization`: 1NF to 3NF and BCNF with the anomalies shown on rows; denormalizing on purpose.
+- [x] `18d_mapping_objects_to_tables`: the object-relational mismatch; foreign key in the table vs collection in the object; one-way and two-way navigation; a class for the join table or not; inheritance mapping (single table, joined, table per class).
+- [x] `18e_data_access_patterns`: DTO, DAO with a DAO factory per DBMS, Repository, Active Record vs Data Mapper; the JDBC method skeleton with try-with-resources; `DataSource`; wrapping `SQLException`.
+- [x] `18f_loading_related_data`: eager vs lazy; lazy loading with a Proxy subclass; the N+1 problem and its fixes; identity map.
+- [x] `18g_transactions_in_code`: transaction boundaries in the service layer; unit of work; autocommit; optimistic (version column) vs pessimistic (`SELECT ... FOR UPDATE`) locking; keeping join tables consistent.
+- [x] `18h_jpa_and_hibernate`: modern annotations only (`@Entity`, `@OneToMany(mappedBy)`, `@ManyToMany`, `@JoinTable`, cascade, orphan removal, fetch defaults); `EntityManager` and transactions; N+1 in Hibernate and `JOIN FETCH`. Run with a Maven Docker image.
+- [x] `18i_schema_patterns`: soft delete, audit columns, enum tables vs check constraints, polymorphic associations, entity-attribute-value, migrations.
 
 ## 3. Problems NeetCode 250 adds to NeetCode 150
 

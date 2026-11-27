@@ -271,4 +271,4 @@ written:     SELECT … FROM … WHERE … GROUP BY … HAVING … ORDER BY … 
 evaluated:   FROM → WHERE → GROUP BY → HAVING → SELECT → ORDER BY → LIMIT
 ```
 
-This explains which names are visible where. `WHERE` runs before `SELECT`, so it cannot use an alias defined in `SELECT`: `WHERE yearly > 80000` fails with `column "yearly" does not exist`. `ORDER BY` runs after `SELECT`, so it can. `GROUP BY` and `HAVING` are covered in [grouping](15c_grouping.md).
+This explains which names are visible where. `WHERE` runs before `SELECT`, so it cannot use an alias defined in `SELECT`: `WHERE yearly > 80000` fails with `column "yearly" does not exist`. `ORDER BY` runs after `SELECT`, so it can. `GROUP BY` and `HAVING` are covered in [grouping](16c_grouping.md).

@@ -4,4 +4,4 @@ For each department, return every employee with the department's highest salary,
 
 Ties must all be returned, so the ranking is `rank`, not `row_number`.
 
-Lesson: [window functions](../../00_docs/15_sql_databases/15e_window_functions.md).
+Lesson: [window functions](../../00_docs/16_sql_databases/16e_window_functions.md).

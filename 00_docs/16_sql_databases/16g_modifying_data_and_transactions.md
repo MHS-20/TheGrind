@@ -2,7 +2,7 @@
 
 `INSERT`, `UPDATE` and `DELETE` change rows. **Constraints** make the database reject changes that would break a rule, such as a salary below zero or an employee in a department that does not exist. A **transaction** groups several changes so that either all of them happen or none do, and its **isolation level** decides what it sees of other transactions running at the same time.
 
-The examples use the schema from [basics](15a_basics.md#the-example-schema), and every result shown is PostgreSQL 17's output. The concurrency examples were run with two real connections to the same database, labelled A and B.
+The examples use the schema from [basics](16a_basics.md#the-example-schema), and every result shown is PostgreSQL 17's output. The concurrency examples were run with two real connections to the same database, labelled A and B.
 
 ## Inserting, updating and deleting
 

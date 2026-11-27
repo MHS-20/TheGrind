@@ -2,7 +2,7 @@
 
 A **subquery** is a query inside another query. It can produce one value to compare against, a yes/no answer for each row, or a whole table to join. A **common table expression** (CTE), written with `WITH`, gives a subquery a name so that the main query reads top to bottom. A recursive CTE can follow a chain of rows, such as an employee's managers, to any depth. Set operations combine the results of two queries.
 
-The examples use the schema from [basics](15a_basics.md#the-example-schema), and every result shown is PostgreSQL 17's output.
+The examples use the schema from [basics](16a_basics.md#the-example-schema), and every result shown is PostgreSQL 17's output.
 
 ## Scalar subqueries: one value
 
@@ -76,7 +76,7 @@ FROM employees e ORDER BY id;
  Gus  |        1
 ```
 
-The planner often turns a correlated subquery into a join, so "once per row" describes the result, not necessarily how it is computed. `EXPLAIN` shows what it actually does ([query planning](15i_query_planning_and_indexes.md)).
+The planner often turns a correlated subquery into a join, so "once per row" describes the result, not necessarily how it is computed. `EXPLAIN` shows what it actually does ([query planning](16i_query_planning_and_indexes.md)).
 
 ## `EXISTS`: does a matching row exist
 
@@ -95,7 +95,7 @@ ORDER BY id;
  Gus
 ```
 
-`EXISTS` is true when the subquery returns at least one row. Its columns are never read, which is why `SELECT 1` is the usual way to write it. Bob has two projects and still appears once. A join with `assignments` would list him twice, which is the row duplication shown in [joins](15b_joins.md#joins-that-inflate-totals). `NOT EXISTS` and its advantage over `NOT IN` are also covered there.
+`EXISTS` is true when the subquery returns at least one row. Its columns are never read, which is why `SELECT 1` is the usual way to write it. Bob has two projects and still appears once. A join with `assignments` would list him twice, which is the row duplication shown in [joins](16b_joins.md#joins-that-inflate-totals). `NOT EXISTS` and its advantage over `NOT IN` are also covered there.
 
 ## Derived tables: a subquery in `FROM`
 
@@ -116,7 +116,7 @@ ORDER BY d.id;
  HR          |  5500
 ```
 
-Grouping **inside** the subquery is the fix for the inflated total in [joins](15b_joins.md#joins-that-inflate-totals): each table is aggregated to one row per department before the join, so no row is repeated.
+Grouping **inside** the subquery is the fix for the inflated total in [joins](16b_joins.md#joins-that-inflate-totals): each table is aggregated to one row per department before the join, so no row is repeated.
 
 ## CTEs: naming subqueries with `WITH`
 
@@ -277,4 +277,4 @@ SELECT id FROM departments EXCEPT SELECT dept_id FROM employees;
   4
 ```
 
-Department 4, Legal, has no employees. The right side contains `NULL` from Gus, yet `EXCEPT` still returns 4. Set operations treat `NULL`s as equal to each other, as `DISTINCT` does, so they are not affected by the `NULL` problem of [`NOT IN`](15b_joins.md#the-not-in-trap).
+Department 4, Legal, has no employees. The right side contains `NULL` from Gus, yet `EXCEPT` still returns 4. Set operations treat `NULL`s as equal to each other, as `DISTINCT` does, so they are not affected by the `NULL` problem of [`NOT IN`](16b_joins.md#the-not-in-trap).

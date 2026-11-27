@@ -2,7 +2,7 @@
 
 A **trigger** runs a function automatically when rows of a table are inserted, updated or deleted. It can record the change in an audit table, clean up or reject the new values, or keep another table in step. The work happens inside the same statement and transaction as the change that fired it, so it cannot be skipped by a caller that forgets. The same property is the cost: every write to the table now does extra work that the statement does not show.
 
-The examples use the schema from [basics](15a_basics.md#the-example-schema), and every result shown is PostgreSQL 17's output. PostgreSQL triggers call a function, written here in PL/pgSQL, PostgreSQL's procedural language. MySQL and SQLite put the trigger body directly in `CREATE TRIGGER` instead.
+The examples use the schema from [basics](16a_basics.md#the-example-schema), and every result shown is PostgreSQL 17's output. PostgreSQL triggers call a function, written here in PL/pgSQL, PostgreSQL's procedural language. MySQL and SQLite put the trigger body directly in `CREATE TRIGGER` instead.
 
 ## The parts of a trigger
 
@@ -59,7 +59,7 @@ SELECT emp_id, old_salary, new_salary FROM salary_log ORDER BY emp_id;
       3 |       7000 |       7500
 ```
 
-The first update changed three rows, so the trigger ran three times and wrote three log rows. The second update also fired the trigger, for Eve's row, but the `IF` skipped it because her salary did not change. `IS DISTINCT FROM` is used instead of `<>` so that a change from or to `NULL` is still detected ([NULL](15a_basics.md#null)).
+The first update changed three rows, so the trigger ran three times and wrote three log rows. The second update also fired the trigger, for Eve's row, but the `IF` skipped it because her salary did not change. `IS DISTINCT FROM` is used instead of `<>` so that a change from or to `NULL` is still detected ([NULL](16a_basics.md#null)).
 
 `changed_at` uses `now()`, which in PostgreSQL is the start time of the **transaction**. All rows logged by one transaction get the same time.
 
@@ -177,7 +177,7 @@ The trigger ran once for each statement, including the one that matched no rows.
 
 ## `INSTEAD OF`: making a view updatable
 
-A view over a join cannot be updated directly ([views](15f_views_and_virtual_tables.md#updating-through-a-view)). An `INSTEAD OF` trigger says what an update of the view means:
+A view over a join cannot be updated directly ([views](16f_views_and_virtual_tables.md#updating-through-a-view)). An `INSTEAD OF` trigger says what an update of the view means:
 
 ```sql
 CREATE VIEW emp_dept AS

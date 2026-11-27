@@ -39,7 +39,7 @@ An in-process message broker: publishers send messages to topics, and every subs
 
 ## Patterns used
 
-- **Observer**, with a broker in between: publishers and subscribers do not know each other. See [behavioral patterns](../../00_docs/16_object_oriented_design/16f_behavioral_patterns.md#observer).
+- **Observer**, with a broker in between: publishers and subscribers do not know each other. See [behavioral patterns](../../00_docs/17_object_oriented_design/17f_behavioral_patterns.md#observer).
 - **Mediator**: the broker.
 - **Producer-consumer** per subscription (stage 3).
 

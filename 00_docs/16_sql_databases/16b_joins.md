@@ -2,7 +2,7 @@
 
 A join combines rows from two tables that belong together, such as an employee and their department. The join condition decides which pairs of rows match. The join type decides what happens to a row that matches nothing: it is dropped, or kept with `NULL`s in place of the missing side. Most join bugs are one of three: the wrong join type, a filter in the wrong clause, or a join that matches one row to several and inflates a total.
 
-The examples use the schema from [basics](15a_basics.md#the-example-schema), and every result shown is PostgreSQL 17's output.
+The examples use the schema from [basics](16a_basics.md#the-example-schema), and every result shown is PostgreSQL 17's output.
 
 ## Inner join: only rows that match
 
@@ -27,7 +27,7 @@ ORDER BY e.id;
 
 Two rows are missing, one from each side:
 
-- **Gus** has `dept_id = NULL`. `d.id = NULL` is never true ([NULL](15a_basics.md#null)), so he matches no department.
+- **Gus** has `dept_id = NULL`. `d.id = NULL` is never true ([NULL](16a_basics.md#null)), so he matches no department.
 - **Legal** has no employee pointing to it.
 
 An inner join keeps only the pairs that match, so both disappear.
@@ -112,7 +112,7 @@ ORDER BY e.id;
  Gus  | Ada
 ```
 
-The left join keeps Ada, Dan and Fay, who have no manager. An inner join would drop them. For a manager's manager and further up, a recursive query is needed ([subqueries and CTEs](15d_subqueries_and_ctes.md#recursive-ctes)).
+The left join keeps Ada, Dan and Fay, who have no manager. An inner join would drop them. For a manager's manager and further up, a recursive query is needed ([subqueries and CTEs](16d_subqueries_and_ctes.md#recursive-ctes)).
 
 ## Joining more than two tables
 
@@ -183,7 +183,7 @@ ORDER BY e.id;
  Gus  |          1
 ```
 
-The four employees without project 1 are gone. The query runs the join first, then `WHERE` ([evaluation order](15a_basics.md#the-order-a-query-is-evaluated-in)). The left join keeps Cat with `project_id = NULL`, and then `WHERE NULL = 1` drops her. A condition on the right table in `WHERE` removes every row that the left join added, which turns it into an inner join with no error or warning.
+The four employees without project 1 are gone. The query runs the join first, then `WHERE` ([evaluation order](16a_basics.md#the-order-a-query-is-evaluated-in)). The left join keeps Cat with `project_id = NULL`, and then `WHERE NULL = 1` drops her. A condition on the right table in `WHERE` removes every row that the left join added, which turns it into an inner join with no error or warning.
 
 The rule: a condition that decides **which rows match** goes in `ON`. A condition that decides **which result rows to keep** goes in `WHERE`.
 
@@ -259,7 +259,7 @@ GROUP BY d.name;
 
 Engineering's real salary total is 23000: Ada 9000, Bob 7000, Cat 7000. The join with assignments repeats Bob, who has two projects, so his 7000 is counted twice. The join was added to filter or count projects, and it silently changed the salary total.
 
-The fix is to aggregate each table at its own level before joining, or to test for projects with `EXISTS` instead of joining. Both are in [subqueries and CTEs](15d_subqueries_and_ctes.md).
+The fix is to aggregate each table at its own level before joining, or to test for projects with `EXISTS` instead of joining. Both are in [subqueries and CTEs](16d_subqueries_and_ctes.md).
 
 ## `USING` and natural joins
 

@@ -45,7 +45,7 @@ Movie <---1-- Show ◆---* SeatState(seat, status, holder, until)
 ## Design notes
 
 - **All or nothing**: check every requested seat, then mark them, inside one critical section; never mark seat by seat with a check in between.
-- **Lock per show** (stage 3) is the answer to give first: shows are independent, and seats of one show are booked together. Per-seat locks need sorted lock order to avoid deadlock; see [concurrency](../../00_docs/16_object_oriented_design/16g_concurrency_basics.md#lock-granularity).
+- **Lock per show** (stage 3) is the answer to give first: shows are independent, and seats of one show are booked together. Per-seat locks need sorted lock order to avoid deadlock; see [concurrency](../../00_docs/17_object_oriented_design/17g_concurrency_basics.md#lock-granularity).
 - **Expired holds are checked lazily**: a seat held until a past time counts as free. No background thread is needed, and the injected clock keeps tests deterministic.
 - **Payment outside the lock**: confirming takes the lock to validate the hold, releases it to call payment, then takes it again to book. The hold guarantees the seats meanwhile; if it expired during payment, refund.
 

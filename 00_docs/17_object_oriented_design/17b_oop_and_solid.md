@@ -106,7 +106,7 @@ long fee(Ticket t, long hours) {
 }
 ```
 
-Fix: the varying part is an interface ([Strategy](16f_behavioral_patterns.md#strategy)); a new rule is a new class.
+Fix: the varying part is an interface ([Strategy](17f_behavioral_patterns.md#strategy)); a new rule is a new class.
 
 ```java
 interface PricingStrategy { long fee(Ticket t, LocalDateTime exit); }

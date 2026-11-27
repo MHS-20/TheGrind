@@ -66,7 +66,7 @@ Other common uses: parking fees, elevator scheduling (nearest car vs least busy)
 
 In Java, a strategy with one method is a functional interface, so a lambda works for small variants: `SplitStrategy exact = (amount, users, params) -> ...`. Use a named class when the strategy has state, validation, or a name worth showing in the diagram.
 
-Strategy vs a `switch`: see [Open/closed](16b_oop_and_solid.md#openclosed). The pattern pays off when variants are added over time or chosen at runtime.
+Strategy vs a `switch`: see [Open/closed](17b_oop_and_solid.md#openclosed). The pattern pays off when variants are added over time or chosen at runtime.
 
 ## Observer
 

@@ -66,11 +66,11 @@ if (spot.canFit(vehicle)) { ... }
 
 ## From class diagram to code
 
-1. **Sketch the diagram** ([class diagrams](16c_class_diagrams.md)): classes, the relations, the multiplicities. Ask "does this match what you had in mind?" before coding.
+1. **Sketch the diagram** ([class diagrams](17c_class_diagrams.md)): classes, the relations, the multiplicities. Ask "does this match what you had in mind?" before coding.
 2. **Write the interfaces and records first.** They are the contract, they are short, and the interviewer can review them in a minute.
 3. **One happy path end to end**: park a car, unpark it, get a fee. Running code early beats a complete design with nothing running.
 4. **Edge cases next**: lot full, unknown ticket, unpark twice.
-5. **Concurrency last**, unless the prompt leads with it ([concurrency for LLD](16g_concurrency_basics.md)).
+5. **Concurrency last**, unless the prompt leads with it ([concurrency for LLD](17g_concurrency_basics.md)).
 
 A small `main` with checks is worth more than claims that the code works:
 
@@ -87,13 +87,13 @@ public static void main(String[] args) {
 
 The second half of most rounds adds a requirement: "add electric spots with charging", "weekend pricing", "notify the driver when the lot has space". This is where the design is tested.
 
-A good design absorbs it by **adding a class**. A weak one absorbs it by **editing many classes** (another `case` in each `switch`). This is the [Open/closed principle](16b_oop_and_solid.md#openclosed).
+A good design absorbs it by **adding a class**. A weak one absorbs it by **editing many classes** (another `case` in each `switch`). This is the [Open/closed principle](17b_oop_and_solid.md#openclosed).
 
 Say the effect out loud: "weekend pricing is a new `PricingStrategy`. `ParkingLot` does not change, because it only knows the interface." If the change does touch several classes, say so too, and explain what would have avoided it. Interviewers value an honest trade-off over a pretend-perfect design.
 
 ## Common mistakes
 
-- **God class.** A `ParkingLotManager` that holds every list, computes fees, prints tickets and checks sizes. Nothing can be changed or tested alone. Split by responsibility ([SRP](16b_oop_and_solid.md#single-responsibility)).
+- **God class.** A `ParkingLotManager` that holds every list, computes fees, prints tickets and checks sizes. Nothing can be changed or tested alone. Split by responsibility ([SRP](17b_oop_and_solid.md#single-responsibility)).
 - **Anaemic model.** Entities that are only getters and setters, with all the logic in a manager. This is the god class again, with extra classes around it. Put behaviour next to the data it uses.
 - **Inheritance for code reuse.** `Truck extends Car` because both have a plate. Inherit only for a real is-a whose behaviour can be substituted; otherwise use composition or a shared field.
 - **Patterns without a requirement.** A factory of factories for three vehicle types. Each pattern should answer a requirement that was named ("pricing will change" justifies Strategy). If the interviewer asks "why is this here?" there must be an answer.

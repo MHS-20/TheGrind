@@ -4,4 +4,4 @@ Rank scores from highest to lowest. Equal scores share a rank, and the next rank
 
 "No gap after a tie" is `dense_rank`. `rank` would skip numbers after ties.
 
-Lesson: [window functions](../../00_docs/15_sql_databases/15e_window_functions.md).
+Lesson: [window functions](../../00_docs/16_sql_databases/16e_window_functions.md).

@@ -102,7 +102,7 @@ class LegacyBankAdapter implements PaymentGateway {
 }
 ```
 
-The rest of the system only knows `PaymentGateway`. Switching vendors means writing another adapter; nothing else changes. This is [dependency inversion](16b_oop_and_solid.md#dependency-inversion) in practice: the system owns the interface, and the adapter is the boundary.
+The rest of the system only knows `PaymentGateway`. Switching vendors means writing another adapter; nothing else changes. This is [dependency inversion](17b_oop_and_solid.md#dependency-inversion) in practice: the system owns the interface, and the adapter is the boundary.
 
 `Arrays.asList` (array to `List`) and `InputStreamReader` (bytes to chars) are adapters in the JDK.
 
@@ -182,7 +182,7 @@ root.size();   // 400
 
 Typical problems: a file system (compare [`20_practical/storage/file_system_tree`](../../20_practical/)), a menu with sub-menus, an org chart (total salary of a department), a product bundle priced as the sum of its items.
 
-The design choice to mention: whether `add` lives on the shared interface (every node looks the same, but `add` on a file must throw) or only on the container (type-safe, as above, but the client must know it has a directory). The second keeps [Liskov](16b_oop_and_solid.md#liskov-substitution) intact and is the usual choice in Java.
+The design choice to mention: whether `add` lives on the shared interface (every node looks the same, but `add` on a file must throw) or only on the container (type-safe, as above, but the client must know it has a directory). The second keeps [Liskov](17b_oop_and_solid.md#liskov-substitution) intact and is the usual choice in Java.
 
 ## Proxy
 

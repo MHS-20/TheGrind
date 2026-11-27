@@ -41,7 +41,7 @@ A cash machine that authenticates a card, shows a balance, and dispenses cash fr
 ## Patterns used
 
 - **State** for the session (stage 1).
-- **Chain of responsibility** for notes (stage 2). See [behavioral patterns](../../00_docs/16_object_oriented_design/16f_behavioral_patterns.md#chain-of-responsibility).
+- **Chain of responsibility** for notes (stage 2). See [behavioral patterns](../../00_docs/17_object_oriented_design/17f_behavioral_patterns.md#chain-of-responsibility).
 - **Adapter**: a real bank client would sit behind the `Bank` interface.
 
 ## Design notes

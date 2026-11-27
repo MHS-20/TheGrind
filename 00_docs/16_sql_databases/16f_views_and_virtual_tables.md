@@ -2,7 +2,7 @@
 
 A query can read from more than stored tables. A **view** is a saved query that behaves like a table and is recomputed every time it is read. A **materialized view** stores the query's result and has to be refreshed when the data changes. A **temporary table** is a real table that exists only for one session. And several expressions produce rows on the fly: `VALUES`, `generate_series`, and `LATERAL` subqueries.
 
-The examples use the schema from [basics](15a_basics.md#the-example-schema), and every result shown is PostgreSQL 17's output. Each section starts from the original data.
+The examples use the schema from [basics](16a_basics.md#the-example-schema), and every result shown is PostgreSQL 17's output. Each section starts from the original data.
 
 ## Views
 
@@ -66,7 +66,7 @@ ERROR:  cannot update view "emp_dept"
 DETAIL:  Views that do not select from a single table or view are not automatically updatable.
 ```
 
-An `INSTEAD OF` trigger can make it updatable by saying what an update should do ([triggers](15h_triggers.md)).
+An `INSTEAD OF` trigger can make it updatable by saying what an update should do ([triggers](16h_triggers.md)).
 
 ### Inserting rows the view cannot see
 
@@ -142,7 +142,7 @@ It is a quick way to join a short list of values against a table, or to test a q
 
 ### `generate_series`
 
-`generate_series(1, 3)` returns the rows 1, 2 and 3. It also works with dates and a step, such as one row per day between two dates, which can be left-joined against real data to show the days with nothing recorded. MySQL does not have it. SQLite has it only as an extension: the `sqlite3` command-line shell includes it, but SQLite as embedded in a program, such as Python's `sqlite3` module, usually does not. A recursive CTE does the same job in any of them ([recursive CTEs](15d_subqueries_and_ctes.md#recursive-ctes)).
+`generate_series(1, 3)` returns the rows 1, 2 and 3. It also works with dates and a step, such as one row per day between two dates, which can be left-joined against real data to show the days with nothing recorded. MySQL does not have it. SQLite has it only as an extension: the `sqlite3` command-line shell includes it, but SQLite as embedded in a program, such as Python's `sqlite3` module, usually does not. A recursive CTE does the same job in any of them ([recursive CTEs](16d_subqueries_and_ctes.md#recursive-ctes)).
 
 ### `LATERAL`: a subquery per row
 
@@ -170,6 +170,6 @@ ORDER BY d.id, top.salary DESC, top.name;
 
 For each department, the subquery sorts that department's employees and keeps two. Legal has no employees, so its subquery returns no rows, and `CROSS JOIN` drops it. `LEFT JOIN LATERAL (…) ON true` would keep it with `NULL`s.
 
-This is the same "top N per group" as `row_number()` in [window functions](15e_window_functions.md#top-n-per-group). The window version numbers every row of every department and then filters, while the `LATERAL` version asks each department for only two rows.
+This is the same "top N per group" as `row_number()` in [window functions](16e_window_functions.md#top-n-per-group). The window version numbers every row of every department and then filters, while the `LATERAL` version asks each department for only two rows.
 
 Bob and Cat tie at 7000 in Engineering, and the subquery's `ORDER BY salary DESC` does not break the tie, so either could be returned as the second row.

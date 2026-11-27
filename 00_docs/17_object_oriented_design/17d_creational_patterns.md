@@ -57,7 +57,7 @@ factory.register("email", EmailNotifier::new);
 factory.register("sms",   SmsNotifier::new);
 ```
 
-The GoF **factory method** is a different shape: a base class defines the algorithm and leaves one creation step to an abstract method that subclasses override. It is the [Template method](16f_behavioral_patterns.md#template-method) pattern applied to creation.
+The GoF **factory method** is a different shape: a base class defines the algorithm and leaves one creation step to an abstract method that subclasses override. It is the [Template method](17f_behavioral_patterns.md#template-method) pattern applied to creation.
 
 ```java
 abstract class BoardGame {

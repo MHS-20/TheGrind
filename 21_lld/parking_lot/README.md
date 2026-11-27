@@ -47,8 +47,8 @@ A multi-floor parking lot that assigns spots to vehicles at entry and charges a 
 
 ## Patterns used
 
-- **Strategy** for pricing (stage 1, pays off in stage 2): weekend pricing is a new class. See [behavioral patterns](../../00_docs/16_object_oriented_design/16f_behavioral_patterns.md#strategy).
-- **Decorator** to combine pricing rules: `ChargingSurcharge(WeekendPricing(HourlyPricing))`. See [structural patterns](../../00_docs/16_object_oriented_design/16e_structural_patterns.md#decorator).
+- **Strategy** for pricing (stage 1, pays off in stage 2): weekend pricing is a new class. See [behavioral patterns](../../00_docs/17_object_oriented_design/17f_behavioral_patterns.md#strategy).
+- **Decorator** to combine pricing rules: `ChargingSurcharge(WeekendPricing(HourlyPricing))`. See [structural patterns](../../00_docs/17_object_oriented_design/17e_structural_patterns.md#decorator).
 - **Facade**: `ParkingLot` is the only class the gates talk to.
 
 ## Design notes

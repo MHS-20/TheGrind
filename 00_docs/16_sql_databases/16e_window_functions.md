@@ -1,8 +1,8 @@
 # SQL Window Functions
 
-`GROUP BY` collapses each group into one row ([grouping](15c_grouping.md)). A **window function** computes a value over a group of rows, called its **window**, but keeps every row in the result. Each row gets its own value, computed from the rows around it. This answers questions that need a row and its group at the same time: each salary next to its department's average, a rank within each department, a running total, the gap since the previous hire.
+`GROUP BY` collapses each group into one row ([grouping](16c_grouping.md)). A **window function** computes a value over a group of rows, called its **window**, but keeps every row in the result. Each row gets its own value, computed from the rows around it. This answers questions that need a row and its group at the same time: each salary next to its department's average, a rank within each department, a running total, the gap since the previous hire.
 
-The examples use the schema from [basics](15a_basics.md#the-example-schema), and every result shown is PostgreSQL 17's output.
+The examples use the schema from [basics](16a_basics.md#the-example-schema), and every result shown is PostgreSQL 17's output.
 
 ## The `OVER` clause
 
@@ -65,7 +65,7 @@ ORDER BY salary DESC, id;
 
 ### Top N per group
 
-The most common use of ranking: the highest-paid employee in each department. Window functions cannot be used in `WHERE`, because `WHERE` runs before them ([evaluation order](15a_basics.md#the-order-a-query-is-evaluated-in)):
+The most common use of ranking: the highest-paid employee in each department. Window functions cannot be used in `WHERE`, because `WHERE` runs before them ([evaluation order](16a_basics.md#the-order-a-query-is-evaluated-in)):
 
 ```sql
 SELECT name FROM employees WHERE row_number() OVER (ORDER BY salary DESC) <= 2;

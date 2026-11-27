@@ -35,7 +35,7 @@ An expense-sharing system: users add expenses paid by one person for a group, an
 
 ## Patterns used
 
-- **Strategy** for splits (stage 2): the main point of the problem. See [behavioral patterns](../../00_docs/16_object_oriented_design/16f_behavioral_patterns.md#strategy).
+- **Strategy** for splits (stage 2): the main point of the problem. See [behavioral patterns](../../00_docs/17_object_oriented_design/17f_behavioral_patterns.md#strategy).
 - **Factory** to create a strategy from a type name, if the input is text.
 - **Observer** if a notification on new expenses is asked for.
 
