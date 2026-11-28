@@ -103,7 +103,7 @@ def copy_md(rel):
 
 # home
 home = fix_dir_links((ROOT / "README.md").read_text(), ROOT / "README.md")
-write("index.md", home.replace("assets/ascent.png", "assets/red_ascent.jpeg"))  # site has its own banner
+write("index.md", home.replace("assets/thegrindcup.png", "assets/thegrindcupred.png"))  # site has its own banner
 nav.append("* [Home](index.md)")
 
 # lessons

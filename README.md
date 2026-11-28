@@ -1,5 +1,11 @@
 <p align="center">
-  <img src="assets/ascent.png" alt="TheGrind" width="75%">
+  <img src="assets/thegrindcup.png" alt="TheGrind" width="25%">
+</p>
+
+<p align="center">
+  <a href="https://mhs-20.github.io/TheGrind/"><img src="https://img.shields.io/badge/docs-MkDocs-526CFE?logo=materialformkdocs&logoColor=white" alt="Docs"></a>
+  <a href="https://leetcode.com/u/MHS-20/"><img src="https://img.shields.io/badge/LeetCode-MHS--20-FFA116?logo=leetcode&logoColor=white" alt="LeetCode"></a>
+  <a href="https://neetcode.io/user/NimbleVenom872"><img src="https://img.shields.io/badge/NeetCode-NimbleVenom872-1E1E1E" alt="NeetCode"></a>
 </p>
 
 # TheGrind
